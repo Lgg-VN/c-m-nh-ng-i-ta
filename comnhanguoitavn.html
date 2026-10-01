@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cơm Nhà Người Ta — Authentic Saigon Family Meal Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            leaf: {
+              50: '#F2F7EE',  // Nền xanh mầm ngà chủ đạo của website
+              100: '#E4EEDC', // Khối thẻ card, timeline mộc mạc
+              200: '#CEE0C0', // Đường viền ngăn cách
+              500: '#75AA41',
+              600: '#5E8F32', // Xanh mâm cơm & người từ logo
+              700: '#4B7526', // Xanh đậm nút nhấn hover
+              800: '#34551A',
+              900: '#1F3815', // Xanh rừng rậm cho chữ và footer
+            },
+            clay: {
+              50: '#FAF6F1',
+              100: '#F5ECE1',
+              200: '#E9D6BF',
+              500: '#B87238',
+              600: '#9C5B29', // Nâu ấm mái nhà & đôi đũa từ logo
+              700: '#7E461C',
+              800: '#5F3212',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F2F7EE;
+      color: #1F3815;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-editorial {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #E4EEDC;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #5E8F32;
+      border-radius: 9999px;
+    }
+    .glass-nav {
+      background: rgba(242, 247, 238, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-leaf-50 text-leaf-900 antialiased selection:bg-leaf-600 selection:text-white">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-leaf-200/80 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-white border border-leaf-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <path d="M20 48 L50 20 L80 48" fill="none" stroke="#9C5B29" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="40" r="5" fill="#5E8F32" />
+              <circle cx="38" cy="45" r="4" fill="#5E8F32" />
+              <circle cx="62" cy="45" r="4" fill="#5E8F32" />
+              <path d="M22 52 Q50 82 78 52 C72 58 60 62 50 62 C40 62 28 58 22 52 Z" fill="#5E8F32" />
+              <line x1="32" y1="80" x2="68" y2="76" stroke="#9C5B29" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="32" y1="86" x2="68" y2="84" stroke="#9C5B29" stroke-width="3.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-editorial text-2xl font-bold tracking-tight text-clay-700 block leading-none">Cơm Nhà Người Ta</span>
+            <span class="text-[11px] uppercase tracking-wider text-leaf-700 font-semibold mt-1 block" data-i18n="tagline">Saigon Family Meal Experience</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-leaf-900">
+          <a href="#experience" class="hover:text-leaf-600 transition-colors" data-i18n="nav_exp">The Experience</a>
+          <a href="#menu" class="hover:text-leaf-600 transition-colors" data-i18n="nav_menu">Daily Mâm Cơm</a>
+          <a href="#hosts" class="hover:text-leaf-600 transition-colors" data-i18n="nav_hosts">Our Family</a>
+          <a href="#reviews" class="hover:text-leaf-600 transition-colors" data-i18n="nav_reviews">Guest Journal</a>
+          <a href="#faq" class="hover:text-leaf-600 transition-colors" data-i18n="nav_faq">FAQ</a>
+        </nav>
+
+        <!-- Header Actions: Lang & Currency & CTA -->
+        <div class="hidden sm:flex items-center gap-3">
+          <!-- Language Toggle Switcher -->
+          <div class="flex items-center bg-white/90 rounded-full border border-leaf-200 p-1 shadow-sm text-xs font-bold">
+            <button type="button" onclick="setLanguage('en')" id="btnLangEn" class="px-2.5 py-1 rounded-full transition-all bg-leaf-600 text-white shadow-xs">EN</button>
+            <button type="button" onclick="setLanguage('vi')" id="btnLangVi" class="px-2.5 py-1 rounded-full text-leaf-800 hover:text-leaf-600 transition-all">VI</button>
+          </div>
+
+          <!-- Currency Selector -->
+          <div class="relative inline-block text-left">
+            <div class="flex items-center bg-white/90 rounded-full border border-leaf-200 px-3 py-1.5 shadow-sm text-xs font-semibold text-leaf-900">
+              <i data-lucide="coins" class="w-3.5 h-3.5 mr-1.5 text-clay-600"></i>
+              <select id="currencySelector" onchange="updateCurrency(this.value)" class="bg-transparent focus:outline-none cursor-pointer pr-1">
+                <option value="USD">USD ($)</option>
+                <option value="VND">VND (₫)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="openBookingModal()" class="inline-flex items-center gap-2 bg-leaf-600 hover:bg-leaf-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-leaf-600/25 transition-all hover:shadow-lg active:scale-95">
+            <span data-i18n="btn_reserve">Reserve a Seat</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <div class="flex items-center gap-2 md:hidden">
+          <div class="flex items-center bg-white rounded-full border border-leaf-200 p-0.5 text-[11px] font-bold">
+            <button type="button" onclick="setLanguage('en')" id="btnMobileLangEn" class="px-2 py-0.5 rounded-full bg-leaf-600 text-white">EN</button>
+            <button type="button" onclick="setLanguage('vi')" id="btnMobileLangVi" class="px-2 py-0.5 rounded-full text-leaf-800">VI</button>
+          </div>
+          <button onclick="toggleMobileNav()" class="p-2 text-leaf-900 hover:text-leaf-600 rounded-lg focus:outline-none" aria-label="Toggle navigation">
+            <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileNav" class="hidden md:hidden bg-leaf-100 border-b border-leaf-200 px-5 pt-3 pb-6 space-y-4">
+      <div class="flex flex-col space-y-3 font-medium text-leaf-900">
+        <a href="#experience" onclick="toggleMobileNav()" class="py-2 border-b border-leaf-200/60" data-i18n="nav_exp">The 5-Step Experience</a>
+        <a href="#menu" onclick="toggleMobileNav()" class="py-2 border-b border-leaf-200/60" data-i18n="nav_menu">Daily Mâm Cơm & Dietary</a>
+        <a href="#hosts" onclick="toggleMobileNav()" class="py-2 border-b border-leaf-200/60" data-i18n="nav_hosts">Our Saigon Family</a>
+        <a href="#reviews" onclick="toggleMobileNav()" class="py-2 border-b border-leaf-200/60" data-i18n="nav_reviews">Guest Journal & Reviews</a>
+        <a href="#faq" onclick="toggleMobileNav()" class="py-2" data-i18n="nav_faq">Practical Info & FAQ</a>
+      </div>
+      <div class="pt-2 flex flex-col gap-3">
+        <div class="flex items-center justify-between py-2 border-t border-leaf-200/60">
+          <span class="text-xs font-semibold text-leaf-800" data-i18n="select_currency">Currency:</span>
+          <select id="mobileCurrencySelector" onchange="updateCurrency(this.value)" class="bg-white rounded-lg border border-leaf-200 px-3 py-1 text-xs font-semibold text-leaf-900">
+            <option value="USD">USD ($)</option>
+            <option value="VND">VND (₫)</option>
+            <option value="EUR">EUR (€)</option>
+          </select>
+        </div>
+        <button onclick="toggleMobileNav(); openBookingModal();" class="w-full bg-leaf-600 text-white py-3 rounded-xl font-semibold text-center shadow-md">
+          <span data-i18n="btn_reserve">Reserve a Seat</span> (<span class="display-price-nav">$48</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 lg:py-24">
+      <div class="absolute inset-0 z-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#5E8F32 0.75px, transparent 0.75px), radial-gradient(#5E8F32 0.75px, #F2F7EE 0.75px); background-size: 30px 30px; background-position: 0 0, 15px 15px;"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-leaf-800 text-xs font-bold tracking-wide uppercase shadow-sm border border-leaf-200">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-leaf-600"></i>
+              <span data-i18n="hero_pill">Authentic Cultural Immersion • District 1, Saigon</span>
+            </div>
+
+            <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-leaf-900 leading-[1.15]" data-i18n="hero_h1">
+              Sit at a Real <br>
+              <span class="text-leaf-600 italic">Saigon Family Table</span>.
+            </h1>
+
+            <p class="text-base sm:text-lg text-leaf-800 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal" data-i18n="hero_desc">
+              Skip commercial dining. Step into our family home in the heart of District 1. Explore historic Tân Định market, hand-cook generational homestyle dishes side-by-side, and share candid stories over a warm, communal Mâm Cơm.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/90 border border-leaf-200 shadow-sm">
+                <i data-lucide="users" class="w-5 h-5 text-leaf-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-leaf-900" data-i18n="badge_max">Max 8 Guests</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/90 border border-leaf-200 shadow-sm">
+                <i data-lucide="flame" class="w-5 h-5 text-clay-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-leaf-900" data-i18n="badge_home">100% Home Cooked</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/90 border border-leaf-200 shadow-sm">
+                <i data-lucide="heart-handshake" class="w-5 h-5 text-leaf-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-leaf-900" data-i18n="badge_diet">Dietary Friendly</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/90 border border-leaf-200 shadow-sm">
+                <i data-lucide="message-circle" class="w-5 h-5 text-leaf-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-leaf-900" data-i18n="badge_lang">English & Tiếng Việt</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#experience" class="inline-flex items-center gap-2 text-sm font-semibold text-leaf-900 hover:text-leaf-600 underline underline-offset-4">
+                <span data-i18n="see_5_steps">See the 5-Step Journey</span>
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+              </a>
+              <span class="text-leaf-300">•</span>
+              <div class="flex items-center text-xs text-leaf-900">
+                <span class="text-amber-500 flex mr-1">★★★★★</span>
+                <span class="font-bold">5.0</span>&nbsp;<span data-i18n="hero_reviews">(140+ verified guests)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Booking Widget -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-leaf-900/5 border border-leaf-200 relative">
+              <div class="absolute -top-3.5 right-6 bg-leaf-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow" data-i18n="available_daily">
+                Available Daily
+              </div>
+
+              <div class="space-y-1 mb-5">
+                <h2 class="font-editorial text-2xl font-bold text-leaf-900" data-i18n="widget_title">Reserve Your Spot</h2>
+                <p class="text-xs text-leaf-800" data-i18n="widget_sub">District 1 home table. Early reservation recommended.</p>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-leaf-800 uppercase tracking-wider mb-1.5" data-i18n="label_session">Select Experience Session</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="setHeroSession('morning')" id="heroSessionMorning" class="session-btn p-3 rounded-xl border-2 border-leaf-600 bg-leaf-100/60 text-left transition-all">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-leaf-800" data-i18n="session_morning_name">Morning Session</span>
+                        <i data-lucide="sun" class="w-3.5 h-3.5 text-leaf-600"></i>
+                      </div>
+                      <p class="text-[11px] text-leaf-800 font-medium">08:30 - 13:00</p>
+                      <span class="text-[10px] text-leaf-700 font-bold" data-i18n="session_morning_sub">Tân Định Market + Lunch</span>
+                    </button>
+
+                    <button type="button" onclick="setHeroSession('twilight')" id="heroSessionTwilight" class="session-btn p-3 rounded-xl border border-leaf-200 bg-white hover:border-leaf-300 text-left transition-all">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-leaf-900" data-i18n="session_twilight_name">Twilight Session</span>
+                        <i data-lucide="sunset" class="w-3.5 h-3.5 text-amber-600"></i>
+                      </div>
+                      <p class="text-[11px] text-leaf-800 font-medium">15:30 - 20:00</p>
+                      <span class="text-[10px] text-clay-600 font-bold" data-i18n="session_twilight_sub">Evening Feast + Tea</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-leaf-800 uppercase tracking-wider mb-1.5" data-i18n="label_date">Date</label>
+                    <input type="date" id="heroDateInput" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2.5 text-xs text-leaf-900 font-semibold focus:outline-none focus:border-leaf-600">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-leaf-800 uppercase tracking-wider mb-1.5" data-i18n="label_guests">Guests</label>
+                    <div class="flex items-center justify-between bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-1.5">
+                      <button type="button" onclick="adjustHeroGuests(-1)" class="w-7 h-7 rounded-lg bg-white border border-leaf-200 flex items-center justify-center text-leaf-900 font-bold hover:bg-leaf-100">-</button>
+                      <span id="heroGuestCount" class="text-xs font-bold text-leaf-900">2 Guests</span>
+                      <button type="button" onclick="adjustHeroGuests(1)" class="w-7 h-7 rounded-lg bg-white border border-leaf-200 flex items-center justify-center text-leaf-900 font-bold hover:bg-leaf-100">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-leaf-100/70 border border-leaf-200 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-leaf-800" data-i18n="label_est_total">Estimated Total:</span>
+                    <p class="text-lg font-bold text-leaf-700" id="heroCalculatedTotal">$96 USD</p>
+                  </div>
+                  <span class="text-[11px] text-leaf-800 font-semibold" data-i18n="label_all_inc">All inclusive</span>
+                </div>
+
+                <button type="button" onclick="proceedToBookingFromHero()" class="w-full bg-leaf-600 hover:bg-leaf-700 text-white py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md shadow-leaf-600/30 transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+                  <span data-i18n="btn_continue_booking">Continue to Reservation</span>
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-leaf-100 flex items-center justify-center gap-3 text-[11px] text-leaf-800">
+                <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-leaf-600"></i> <span data-i18n="pill_cancel">Free cancel up to 24h</span></span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="badge-percent" class="w-3.5 h-3.5 text-clay-600"></i> <span data-i18n="pill_no_fees">No hidden fees</span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- THE 5-STEP JOURNEY -->
+    <section id="experience" class="py-20 bg-white border-y border-leaf-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-leaf-100 text-leaf-800 text-xs font-bold uppercase tracking-wider border border-leaf-200">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span data-i18n="exp_pill">The 5-Step Intimate Experience</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-leaf-900" data-i18n="exp_h2">
+            More Than a Cooking Class. <br>
+            <span class="italic text-leaf-600">A Day in a Saigon Home.</span>
+          </h2>
+          <p class="text-base text-leaf-800 leading-relaxed" data-i18n="exp_sub">
+            From the historic produce aisles of Chợ Tân Định to our family kitchen in District 1, experience the true warmth of southern Vietnamese home life.
+          </p>
+        </div>
+
+        <div class="space-y-12">
+          
+          <!-- Step 1 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-leaf-50 rounded-3xl p-6 sm:p-8 border border-leaf-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-5 order-2 lg:order-1 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-leaf-600 text-white font-bold flex items-center justify-center text-sm shadow">1</span>
+                <span class="text-xs uppercase font-bold text-leaf-700 tracking-wider" data-i18n="step1_tag">Step One • ~60 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-leaf-900" data-i18n="step1_title">Tân Định Wet Market Discovery</h3>
+              <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="step1_desc">
+                We meet at Chợ Tân Định, one of District 1's most iconic markets founded in the 1920s. We walk past aromatic herb vendors, tropical vegetables, and fresh catches from the Mekong Delta.
+              </p>
+              <ul class="space-y-2 text-xs text-leaf-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step1_b1">Touch & smell herbs: culantro, thai basil, perilla leaves</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step1_b2">Learn respectful market customs with multi-generational vendors</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step1_b3">Taste warm sticky rice treats or soy curd along the aisle</span></li>
+              </ul>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group border border-leaf-200">
+                <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Traditional Vietnamese wet market bustling with fresh local vegetables" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium">
+                  Chợ Tân Định, District 1
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-leaf-50 rounded-3xl p-6 sm:p-8 border border-leaf-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-7">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group border border-leaf-200">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Hands-on home cooking inside a warm Vietnamese home kitchen" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium" data-i18n="kitchen_tag">
+                  Our District 1 Home Kitchen
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-leaf-600 text-white font-bold flex items-center justify-center text-sm shadow">2</span>
+                <span class="text-xs uppercase font-bold text-leaf-700 tracking-wider" data-i18n="step2_tag">Step Two • ~90 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-leaf-900" data-i18n="step2_title">Hands-on Home Cooking</h3>
+              <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="step2_desc">
+                Take a short stroll to our alley townhouse in District 1. Tie on an apron, drink calamansi cooler, and prepare 4 signature home dishes side-by-side with our family.
+              </p>
+              <ul class="space-y-2 text-xs text-leaf-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step2_b1">Master claypot caramelization (Kho Tộ) with cane sugar</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step2_b2">Balance sweet tamarind broth and crispy wok-tossed greens</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step2_b3">Hand-pound shallots and peppercorns in traditional stone mortars</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-leaf-50 rounded-3xl p-6 sm:p-8 border border-leaf-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-5 order-2 lg:order-1 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-leaf-600 text-white font-bold flex items-center justify-center text-sm shadow">3</span>
+                <span class="text-xs uppercase font-bold text-leaf-700 tracking-wider" data-i18n="step3_tag">Step Three • ~75 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-leaf-900" data-i18n="step3_title">Dine, Connect & "Mời Cơm"</h3>
+              <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="step3_desc">
+                Gather around the iconic family round tray (Mâm Cơm). Experience the heartwarming custom of Mời Cơm—inviting elders and friends to start the meal.
+              </p>
+              <ul class="space-y-2 text-xs text-leaf-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step3_b1">Learn communal dining etiquette and chopstick courtesy</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step3_b2">Heartfelt conversations about Saigon history, family values, and daily customs</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf-600"></i> <span data-i18n="step3_b3">Generous refills of jasmine rice cooked straight in earthenware pots</span></li>
+              </ul>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group border border-leaf-200">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Communal Vietnamese family meal with rich savory dishes" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium" data-i18n="mamcom_tag">
+                  The Sacred Family "Mâm Cơm"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 & 5 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-leaf-50 rounded-3xl p-6 sm:p-8 border border-leaf-200 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-leaf-600 text-white font-bold flex items-center justify-center text-sm shadow">4</span>
+                <span class="text-xs uppercase font-bold text-leaf-700 tracking-wider" data-i18n="step4_tag">Step Four • ~45 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-leaf-900" data-i18n="step4_title">Tea, Seasonal Treats & Daily Customs</h3>
+              <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="step4_desc">
+                Relax after the feast with a warm pot of lotus green tea, tropical fruits (pomelo, dragonfruit, rambutan), and handmade mung bean cakes while chatting like long-time friends.
+              </p>
+              <div class="p-3 bg-white/80 rounded-xl border border-leaf-200 text-xs text-leaf-800 italic" data-i18n="step4_quote">
+                "The table cleanses, but the tea deepens the friendship. Ask us anything about life in Vietnam."
+              </div>
+            </div>
+
+            <div class="bg-leaf-100/60 rounded-3xl p-6 sm:p-8 border border-leaf-200 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-clay-600 text-white font-bold flex items-center justify-center text-sm shadow">5</span>
+                <span class="text-xs uppercase font-bold text-clay-700 tracking-wider" data-i18n="step5_tag">Step Five • Farewell Keepsakes</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-leaf-900" data-i18n="step5_title">Memories, Digital Photos & Recipe Kit</h3>
+              <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="step5_desc">
+                Receive a handcrafted spice souvenir tin, printable homestyle recipe cards, and a private cloud link to download candid photos captured throughout your journey.
+              </p>
+              <div class="p-3 bg-white/90 rounded-xl border border-leaf-200 text-xs text-leaf-900 font-semibold flex items-center gap-2">
+                <i data-lucide="cloud-download" class="w-4 h-4 text-leaf-600"></i>
+                <span data-i18n="step5_photo_link">Private photo album link sent directly to your email</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="py-20 bg-leaf-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white text-leaf-800 text-xs font-bold uppercase tracking-wider border border-leaf-200">
+            <i data-lucide="utensils" class="w-3.5 h-3.5"></i>
+            <span data-i18n="menu_pill">The Anatomy of a Home Meal</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-leaf-900" data-i18n="menu_h2">
+            The Balance of "Mâm Cơm"
+          </h2>
+          <p class="text-sm sm:text-base text-leaf-800" data-i18n="menu_sub">
+            A traditional Vietnamese meal is eaten together at the same time: savory braised dishes cut the rice, cleansing soup clears the palate, and crisp greens ground the feast.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-2 pt-6">
+            <button onclick="switchMenuTab('classic')" id="tabBtnClassic" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-leaf-600 text-white" data-i18n="tab_classic">
+              Classic Southern Home
+            </button>
+            <button onclick="switchMenuTab('pescatarian')" id="tabBtnPescatarian" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-leaf-900 hover:bg-leaf-100 border border-leaf-200" data-i18n="tab_pescatarian">
+              Pescatarian & Seafood
+            </button>
+            <button onclick="switchMenuTab('vegan')" id="tabBtnVegan" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-leaf-900 hover:bg-leaf-100 border border-leaf-200" data-i18n="tab_vegan">
+              Plant-Based & Vegan (*Chay*)
+            </button>
+          </div>
+        </div>
+
+        <div id="menuCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-leaf-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-leaf-100 text-leaf-700 border border-leaf-200 flex items-center justify-center shrink-0">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-editorial text-lg font-bold text-leaf-900" data-i18n="allergy_title">Allergies & Clean Drinking Water Guarantee</h4>
+              <p class="text-xs text-leaf-800 mt-1 max-w-2xl leading-relaxed" data-i18n="allergy_desc">
+                We strictly use triple-filtered RO water for cooking, stocks, and tea. Individual clay pots are prepared separately for gluten-free, peanut-free, or strict vegan guests without cross-contamination.
+              </p>
+            </div>
+          </div>
+          <button onclick="openBookingModal()" class="shrink-0 bg-leaf-600 hover:bg-leaf-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm" data-i18n="btn_specify_diet">
+            Specify Dietary Needs
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOSTS SECTION -->
+    <section id="hosts" class="py-20 bg-white border-y border-leaf-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border-4 border-leaf-100">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
+                     alt="Friendly Vietnamese family hosts smiling in home kitchen" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-6 -right-4 sm:bottom-6 sm:-right-6 bg-leaf-900 text-white p-4 rounded-2xl shadow-xl max-w-[240px] border border-leaf-800">
+                <p class="text-xs italic leading-snug" data-i18n="host_quote">"In Saigon, you are only a stranger until you accept a warm bowl of rice."</p>
+                <span class="block text-[10px] font-bold text-leaf-200 mt-2 uppercase tracking-wider" data-i18n="host_name">— Cô Hương, Head Host</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-leaf-100 text-leaf-800 text-xs font-bold uppercase tracking-wider border border-leaf-200">
+              <i data-lucide="home" class="w-3.5 h-3.5"></i>
+              <span data-i18n="hosts_pill">Our Saigon Family</span>
+            </div>
+
+            <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-leaf-900" data-i18n="hosts_h2">
+              Why We Opened Our <br>
+              <span class="italic text-leaf-600">Family Kitchen to the World</span>
+            </h2>
+
+            <p class="text-base text-leaf-800 leading-relaxed" data-i18n="hosts_p1">
+              We are Cô Hương and nephew Minh. Our family has lived in this quiet alley in District 1 for decades. Growing up, our dining table was always filled with laughter, clinking porcelain bowls, and the smell of braised fish caramelized over heat.
+            </p>
+
+            <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="hosts_p2">
+              International travelers often experience Saigon through restaurant chains. We founded Cơm Nhà Người Ta so visitors could experience what a real Vietnamese domestic meal feels like: eating together, learning about family life, and feeling at home.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-leaf-200">
+              <div>
+                <span class="block text-2xl font-bold text-leaf-700 font-editorial">District 1</span>
+                <span class="text-xs text-leaf-800" data-i18n="stat_d1">Central location</span>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold text-leaf-600 font-editorial">100%</span>
+                <span class="text-xs text-leaf-800" data-i18n="stat_recipe">Family recipes</span>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold text-clay-600 font-editorial">8 Max</span>
+                <span class="text-xs text-leaf-800" data-i18n="stat_intimate">Intimate guest limit</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INLINE RESERVATION SECTION -->
+    <section id="booking-section" class="py-20 bg-leaf-50 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white text-leaf-800 text-xs font-bold uppercase tracking-wider border border-leaf-200">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+            <span data-i18n="portal_pill">Interactive Reservation Portal</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-leaf-900" data-i18n="portal_h2">
+            Book Your Family Table Experience
+          </h2>
+          <p class="text-sm text-leaf-800" data-i18n="portal_sub">
+            Secure your seats and complete payment via instant banking QR code transfer.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-leaf-200">
+          <form id="inlineBookingForm" onsubmit="handleFormSubmission(event)" class="space-y-8">
+            <input type="hidden" name="_subject" value="[CƠM NHÀ NGƯỜI TA] Đơn đặt bàn mới tại Quận 1!">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="session_selected" id="formSessionInput" value="morning" />
+            <input type="hidden" name="guests_total" id="formGuestInput" value="2" />
+            <input type="hidden" name="total_amount_vnd" id="formAmountVndInput" value="2400000" />
+            
+            <!-- Step 1: Session -->
+            <div>
+              <label class="block text-sm font-bold text-leaf-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-leaf-600 text-white text-xs flex items-center justify-center">1</span>
+                <span data-i18n="form_step1_label">Select Your Preferred Time</span>
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <label class="relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-600 bg-leaf-100/50" id="labelMorning">
+                  <input type="radio" name="bookingSession" value="morning" checked onchange="handleSessionChange('morning')" class="sr-only">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-sm text-leaf-900" data-i18n="session_morning_name">Morning Market + Lunch Session</span>
+                    <span class="text-xs bg-leaf-200 text-leaf-900 font-bold px-2.5 py-0.5 rounded-full border border-leaf-300">08:30 - 13:00</span>
+                  </div>
+                  <p class="text-xs text-leaf-800 mb-2" data-i18n="session_morning_desc">Chợ Tân Định wet market walk, peak morning ingredient sourcing, home cooking & lunch.</p>
+                  <span class="text-xs text-leaf-700 font-bold mt-auto flex items-center gap-1">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i> <span data-i18n="session_morning_tip">Best for market action & photography</span>
+                  </span>
+                </label>
+
+                <label class="relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-200 bg-white hover:border-leaf-300" id="labelTwilight">
+                  <input type="radio" name="bookingSession" value="twilight" onchange="handleSessionChange('twilight')" class="sr-only">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-sm text-leaf-900" data-i18n="session_twilight_name">Twilight Market + Dinner Session</span>
+                    <span class="text-xs bg-leaf-200 text-leaf-900 font-bold px-2.5 py-0.5 rounded-full">15:30 - 20:00</span>
+                  </div>
+                  <p class="text-xs text-leaf-800 mb-2" data-i18n="session_twilight_desc">Afternoon market atmosphere, cozy sunset cooking, candlelight dinner & night tea.</p>
+                  <span class="text-xs text-clay-600 font-bold mt-auto flex items-center gap-1">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i> <span data-i18n="session_twilight_tip">Best for relaxed dinner & sunset vibe</span>
+                  </span>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Step 2: Date & Guests -->
+            <div>
+              <label class="block text-sm font-bold text-leaf-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-leaf-600 text-white text-xs flex items-center justify-center">2</span>
+                <span data-i18n="form_step2_label">Date & Party Size</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1.5" data-i18n="label_choose_date">Choose Date</label>
+                  <input type="date" required name="booking_date" id="bookingDateInput" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-4 py-3 text-sm text-leaf-900 focus:outline-none focus:border-leaf-600 font-medium">
+                  <span class="text-[11px] text-leaf-800 mt-1 block" data-i18n="sub_daily_run">Experiences operate daily in District 1</span>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1.5" data-i18n="label_party_size">Number of Guests (Max 8)</label>
+                  <div class="flex items-center justify-between bg-leaf-50 border border-leaf-200 rounded-xl p-1.5">
+                    <button type="button" onclick="changeGuestCount(-1)" class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-leaf-900 font-bold hover:bg-leaf-100 active:scale-95 transition-transform">-</button>
+                    <div class="text-center">
+                      <span id="bookingGuestNumber" class="text-base font-bold text-leaf-900">2 Guests</span>
+                      <span class="block text-[10px] text-leaf-700 font-semibold" id="seatAvailabilityText">6 seats remaining</span>
+                    </div>
+                    <button type="button" onclick="changeGuestCount(1)" class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-leaf-900 font-bold hover:bg-leaf-100 active:scale-95 transition-transform">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Contact & Dietary -->
+            <div>
+              <label class="block text-sm font-bold text-leaf-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-leaf-600 text-white text-xs flex items-center justify-center">3</span>
+                <span data-i18n="form_step3_label">Guest Details & Dietary Notes</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1" data-i18n="label_full_name">Full Name</label>
+                  <input type="text" required name="client_name" id="inlineClientName" placeholder="e.g. Sarah Jenkins" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-4 py-2.5 text-sm text-leaf-900 focus:outline-none focus:border-leaf-600">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1" data-i18n="label_email">Email Address</label>
+                  <input type="email" required name="client_email" id="inlineClientEmail" placeholder="sarah.jenkins@example.com" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-4 py-2.5 text-sm text-leaf-900 focus:outline-none focus:border-leaf-600">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1" data-i18n="label_phone">WhatsApp / Phone Number</label>
+                  <input type="tel" required name="client_phone" id="inlineClientPhone" placeholder="+1 555 123 4567" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-4 py-2.5 text-sm text-leaf-900 focus:outline-none focus:border-leaf-600">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-leaf-800 mb-1" data-i18n="label_hotel">Hotel in Saigon (District 1 / nearby)</label>
+                  <input type="text" name="client_hotel" placeholder="e.g. Caravelle Hotel, District 1" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-4 py-2.5 text-sm text-leaf-900 focus:outline-none focus:border-leaf-600">
+                </div>
+              </div>
+
+              <div class="bg-leaf-50 rounded-2xl p-4 border border-leaf-200">
+                <span class="block text-xs font-bold text-leaf-900 mb-2" data-i18n="label_diet_spec">Special Dietary Requirements (Optional)</span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <label class="flex items-center gap-2 text-xs text-leaf-800 cursor-pointer">
+                    <input type="checkbox" name="diet_vegetarian" value="yes" class="rounded text-leaf-600 focus:ring-0">
+                    <span data-i18n="diet_veg">Vegetarian / Vegan</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-leaf-800 cursor-pointer">
+                    <input type="checkbox" name="diet_gluten_free" value="yes" class="rounded text-leaf-600 focus:ring-0">
+                    <span data-i18n="diet_gluten">Gluten-Free</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-leaf-800 cursor-pointer">
+                    <input type="checkbox" name="diet_shellfish" value="yes" class="rounded text-leaf-600 focus:ring-0">
+                    <span data-i18n="diet_shellfish">Shellfish Allergy</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-leaf-800 cursor-pointer">
+                    <input type="checkbox" name="diet_nut_free" value="yes" class="rounded text-leaf-600 focus:ring-0">
+                    <span data-i18n="diet_nut">Nut / Peanut Free</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="border-t border-leaf-200 pt-6">
+              <div class="bg-leaf-100 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border border-leaf-200">
+                <div>
+                  <div class="text-xs text-leaf-800">
+                    <span id="pricePerPersonLabel">$48 USD</span> × <span id="summaryGuestCount">2</span> <span data-i18n="label_guests_txt">Guests</span>
+                  </div>
+                  <div class="text-2xl font-bold font-editorial text-leaf-800" id="summaryGrandTotal">
+                    $96 USD
+                  </div>
+                  <span class="text-[11px] text-leaf-800 font-semibold" data-i18n="label_tax_inc">Taxes, ingredients, fresh fruit & photo collection included.</span>
+                </div>
+
+                <div class="w-full sm:w-auto">
+                  <button type="submit" id="btnSubmitBooking" class="w-full sm:w-auto bg-leaf-600 hover:bg-leaf-700 text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-lg shadow-leaf-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                    <span data-i18n="btn_proceed_payment">Proceed to Payment</span>
+                    <i data-lucide="qr-code" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REVIEWS & CANDID PHOTO LOG -->
+    <section id="reviews" class="py-20 bg-white border-b border-leaf-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-leaf-100 text-leaf-800 text-xs font-bold uppercase tracking-wider mb-3 border border-leaf-200">
+              <i data-lucide="message-square-quote" class="w-3.5 h-3.5"></i>
+              <span data-i18n="reviews_pill">Traveler Love & Honest Words</span>
+            </div>
+            <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-leaf-900" data-i18n="reviews_h2">
+              Candid Voices From Our Table
+            </h2>
+          </div>
+
+          <div class="flex items-center gap-4 bg-leaf-50 px-5 py-3 rounded-2xl border border-leaf-200">
+            <div class="text-3xl font-bold font-editorial text-leaf-700">5.0</div>
+            <div class="text-xs">
+              <div class="text-amber-500 font-bold">★★★★★</div>
+              <span class="text-leaf-900 font-semibold" data-i18n="reviews_count">142 Verified Reviews (Google & TripAdvisor)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div class="bg-leaf-50/70 p-6 rounded-3xl border border-leaf-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-leaf-800 font-medium" data-i18n="rev1_time">2 weeks ago</span>
+              </div>
+              <p class="text-xs sm:text-sm text-leaf-900 leading-relaxed italic" data-i18n="rev1_text">
+                "Best highlight in Saigon! Walking through Chợ Tân Định in District 1 with Minh and Cô Hương felt so personal. Cooking caramelized fish in the claypot was an unforgettable cultural moment."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-leaf-200 mt-4">
+              <div class="w-10 h-10 rounded-full bg-leaf-200 text-leaf-900 flex items-center justify-center font-bold text-xs">
+                EM
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-leaf-900">Emma & Marcus Reid</h5>
+                <span class="text-[11px] text-leaf-800">Melbourne, Australia 🇦🇺</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-leaf-50/70 p-6 rounded-3xl border border-leaf-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-leaf-800 font-medium" data-i18n="rev2_time">1 month ago</span>
+              </div>
+              <p class="text-xs sm:text-sm text-leaf-900 leading-relaxed italic" data-i18n="rev2_text">
+                "As a strict vegan, I often felt left out in meat-heavy tours. Here, they cooked special dishes with fresh mushrooms and tofu, keeping fish sauce completely away. Felt like real family."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-leaf-200 mt-4">
+              <div class="w-10 h-10 rounded-full bg-leaf-200 text-leaf-900 flex items-center justify-center font-bold text-xs">
+                CL
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-leaf-900">Claire Laurent</h5>
+                <span class="text-[11px] text-leaf-800">Lyon, France 🇫🇷</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-leaf-50/70 p-6 rounded-3xl border border-leaf-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-leaf-800 font-medium" data-i18n="rev3_time">Last month</span>
+              </div>
+              <p class="text-xs sm:text-sm text-leaf-900 leading-relaxed italic" data-i18n="rev3_text">
+                "The tea conversation after the meal in District 1 made our trip. We talked about Vietnamese daily habits, family structures, and Saigon life. Plus, candid photos were emailed the very same evening!"
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-leaf-200 mt-4">
+              <div class="w-10 h-10 rounded-full bg-leaf-200 text-leaf-900 flex items-center justify-center font-bold text-xs">
+                DT
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-leaf-900">David Tan & Jennifer</h5>
+                <span class="text-[11px] text-leaf-800">San Francisco, USA 🇺🇸</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-editorial text-xl font-bold text-leaf-900" data-i18n="gallery_h4">Candid Moments Captured at Our Table</h4>
+            <span class="text-xs text-leaf-700 font-semibold" data-i18n="gallery_sub">Updated weekly</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="aspect-square rounded-2xl overflow-hidden group border border-leaf-200">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Cooking and prep in action" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group border border-leaf-200">
+              <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Fresh Vietnamese herbs and vegetables" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group border border-leaf-200">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Family dining atmosphere" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group border border-leaf-200">
+              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Vietnamese lotus tea and fresh fruit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 bg-leaf-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white text-leaf-800 text-xs font-bold uppercase tracking-wider border border-leaf-200">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+            <span data-i18n="faq_pill">Got Questions?</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-leaf-900" data-i18n="faq_h2">
+            Practical Information & FAQs
+          </h2>
+          <p class="text-sm text-leaf-800" data-i18n="faq_sub">
+            Everything you need to know before coming to our family table in District 1.
+          </p>
+        </div>
+
+        <div class="space-y-4" id="faqAccordion">
+          
+          <div class="bg-white rounded-2xl border border-leaf-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-leaf-900 focus:outline-none">
+              <span data-i18n="faq_q1">Where exactly do we meet in District 1?</span>
+              <i data-lucide="chevron-down" id="faqIcon-1" class="w-5 h-5 text-leaf-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-leaf-800 leading-relaxed border-t border-leaf-100 pt-3" data-i18n="faq_a1">
+              We meet at the main entrance gate of <strong>Chợ Tân Định</strong> (Hai Bà Trưng Street, Tân Định Ward, District 1). It is easily reachable within 5–10 minutes via Grab car or taxi from Ben Thanh Market or Opera House. We provide live GPS links upon booking.
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-leaf-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-leaf-900 focus:outline-none">
+              <span data-i18n="faq_q2">What should I wear for the wet market and home visit?</span>
+              <i data-lucide="chevron-down" id="faqIcon-2" class="w-5 h-5 text-leaf-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-leaf-800 leading-relaxed border-t border-leaf-100 pt-3" data-i18n="faq_a2">
+              Dress casually for tropical weather! Flat walking shoes or sneakers with grip are recommended as market walkways can be wet from ice and fresh produce. Clean indoor slippers are provided when entering our home.
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-leaf-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-leaf-900 focus:outline-none">
+              <span data-i18n="faq_q3">How clean is the food and water?</span>
+              <i data-lucide="chevron-down" id="faqIcon-3" class="w-5 h-5 text-leaf-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-leaf-800 leading-relaxed border-t border-leaf-100 pt-3" data-i18n="faq_a3">
+              We uphold strict hygiene standards because our family eats the exact same meal with you. We use pure RO filtered drinking water for cooking, stocks, and tea. Herbs undergo careful multi-stage clean water rinses.
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-leaf-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-leaf-900 focus:outline-none">
+              <span data-i18n="faq_q4">What is the cancellation policy? What if it rains?</span>
+              <i data-lucide="chevron-down" id="faqIcon-4" class="w-5 h-5 text-leaf-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-leaf-800 leading-relaxed border-t border-leaf-100 pt-3" data-i18n="faq_a4">
+              100% refund for cancellations made up to 24 hours before your session. Tân Định market and our home are fully covered and air-conditioned, so rainy Saigon days run comfortably.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DISTRICT 1 MAP & LOCATION BANNER -->
+    <section class="py-16 bg-white border-b border-leaf-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-leaf-100/60 rounded-3xl p-8 sm:p-12 border border-leaf-200 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="space-y-3 max-w-xl text-center lg:text-left">
+            <span class="text-xs uppercase font-bold text-leaf-700 tracking-wider" data-i18n="loc_tag">Prime Location • District 1, Ho Chi Minh City</span>
+            <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-leaf-900" data-i18n="loc_h3">
+              Escape the tourist bubble. Join us in authentic District 1.
+            </h3>
+            <p class="text-sm text-leaf-800 leading-relaxed" data-i18n="loc_desc">
+              Experience the genuine culinary pulse of Saigon right in District 1, walking through Chợ Tân Định and down cozy residential alleyways where neighbors still know each other by name.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            <a href="https://www.google.com/maps/search/?api=1&query=Cho+Tan+Dinh+Quan+1+Ho+Chi+Minh" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white text-leaf-900 border border-leaf-200 hover:border-leaf-600 px-6 py-3.5 rounded-xl text-xs font-bold shadow-sm transition-all">
+              <i data-lucide="map-pin" class="w-4 h-4 text-leaf-600"></i>
+              <span data-i18n="btn_open_map">Open in Google Maps</span>
+            </a>
+            <button onclick="openBookingModal()" class="inline-flex items-center justify-center gap-2 bg-leaf-600 hover:bg-leaf-700 text-white px-6 py-3.5 rounded-xl text-xs font-bold shadow-md shadow-leaf-600/20 transition-all">
+              <span data-i18n="btn_check_dates">Check Available Dates</span>
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-leaf-900 text-leaf-100 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-leaf-800">
+        
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-leaf-600 flex items-center justify-center text-white">
+              <i data-lucide="soup" class="w-5 h-5"></i>
+            </div>
+            <span class="font-editorial text-2xl font-bold tracking-tight text-white">Cơm Nhà Người Ta</span>
+          </div>
+          <p class="text-xs text-leaf-200/80 max-w-sm leading-relaxed" data-i18n="footer_about">
+            An intimate culinary tourism experience in District 1, Saigon. Connecting international travelers with authentic Vietnamese family meals, Chợ Tân Định wet market, and genuine hospitality.
+          </p>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2">
+            <a href="https://wa.me/84389981131" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-leaf-800 text-leaf-200 border border-leaf-700 text-xs font-semibold hover:bg-leaf-700 transition-colors">
+              <i data-lucide="phone-call" class="w-3.5 h-3.5 text-leaf-400"></i>
+              <span>Hotline / WhatsApp: 0389981131</span>
+            </a>
+            <a href="mailto:comnhanguoitavn@gmail.com" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-leaf-800/60 text-leaf-200 border border-leaf-700 text-xs font-medium hover:bg-leaf-700 transition-colors">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-leaf-400"></i>
+              <span>comnhanguoitavn@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-leaf-300 tracking-wider" data-i18n="footer_col_exp">The Experience</h4>
+          <ul class="space-y-2 text-xs text-leaf-300">
+            <li><a href="#experience" class="hover:text-white transition-colors" data-i18n="f_link1">Tân Định Market Walk</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors" data-i18n="f_link2">District 1 Home Kitchen</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors" data-i18n="f_link3">Communal Dining</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors" data-i18n="f_link4">Tea & Sweet Treats</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors" data-i18n="f_link5">Recipe Keepsakes</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-leaf-300 tracking-wider" data-i18n="footer_col_info">Information</h4>
+          <ul class="space-y-2 text-xs text-leaf-300">
+            <li><a href="#menu" class="hover:text-white transition-colors" data-i18n="f_link6">Dietary Adaptations</a></li>
+            <li><a href="#hosts" class="hover:text-white transition-colors" data-i18n="f_link7">About Our Family</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors" data-i18n="f_link8">Hygiene & Safety</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors" data-i18n="f_link9">Meeting Point Info</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors" data-i18n="f_link10">Cancellation Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-leaf-300 tracking-wider" data-i18n="footer_col_letter">Saigon Hearth Letter</h4>
+          <p class="text-xs text-leaf-300 leading-relaxed" data-i18n="letter_sub">
+            Send us feedback or subscribe to generational Saigon home recipes.
+          </p>
+          <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+            <input type="hidden" name="_subject" value="[CƠM NHÀ NGƯỜI TA] Phản hồi / Đăng ký mới">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="flex">
+              <input type="email" required name="email_contact" placeholder="Your email..." class="bg-leaf-800 text-white placeholder-leaf-400 text-xs px-3 py-2 rounded-l-lg w-full focus:outline-none focus:ring-1 focus:ring-leaf-500">
+              <button type="submit" class="bg-leaf-600 hover:bg-leaf-700 text-white px-3 py-2 rounded-r-lg text-xs font-bold shrink-0" data-i18n="btn_send">
+                Send
+              </button>
+            </div>
+          </form>
+          <span class="block text-[10px] text-leaf-400" data-i18n="session_hours">Sessions: 08:30 (Morning) & 15:30 (Twilight)</span>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-leaf-400 gap-4">
+        <p>© 2026 Cơm Nhà Người Ta. District 1, Ho Chi Minh City, Vietnam. All rights reserved.</p>
+        <p class="flex items-center gap-1" data-i18n="footer_signature">
+          Crafted with love for authentic cultural exchange
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL QUICK RESERVATION -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 shadow-2xl relative border border-leaf-200">
+      
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-leaf-100 text-leaf-800 hover:bg-leaf-200 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-[11px] font-bold uppercase text-leaf-600 tracking-wider" data-i18n="modal_quick_title">Quick Reservation</span>
+        <h3 class="font-editorial text-2xl font-bold text-leaf-900" data-i18n="modal_quick_h3">Secure Your Place</h3>
+        <p class="text-xs text-leaf-800" data-i18n="modal_quick_sub">Max 8 seats per session in District 1.</p>
+      </div>
+
+      <form id="modalBookingForm" onsubmit="handleModalFormSubmission(event)" class="space-y-4">
+        <input type="hidden" name="_subject" value="[CƠM NHÀ NGƯỜI TA] Đơn đặt bàn nhanh (Quick Modal)!">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        
+        <div>
+          <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_session">Session</label>
+          <select id="modalSessionSelect" name="session" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs font-medium text-leaf-900 focus:outline-none focus:border-leaf-600">
+            <option value="morning">Morning Wet Market + Lunch (08:30 - 13:00)</option>
+            <option value="twilight">Twilight Market + Dinner (15:30 - 20:00)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_date">Date</label>
+            <input type="date" required id="modalDateInput" name="date" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs text-leaf-900 focus:outline-none focus:border-leaf-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_party_size">Number of Guests</label>
+            <select id="modalGuestSelect" name="guests" onchange="updateModalCalculations()" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs font-medium text-leaf-900 focus:outline-none focus:border-leaf-600">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+              <option value="7">7 Guests</option>
+              <option value="8">8 Guests (Full Table)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_full_name">Full Name</label>
+          <input type="text" required name="name" id="modalClientName" placeholder="Your full name" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs text-leaf-900 focus:outline-none focus:border-leaf-600">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_email">Email Address</label>
+          <input type="email" required name="email" id="modalClientEmail" placeholder="your.email@example.com" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs text-leaf-900 focus:outline-none focus:border-leaf-600">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_phone">WhatsApp / Phone</label>
+          <input type="tel" required name="phone" id="modalClientPhone" placeholder="+1 234 567 8900" class="w-full bg-leaf-50 border border-leaf-200 rounded-xl px-3 py-2 text-xs text-leaf-900 focus:outline-none focus:border-leaf-600">
+        </div>
+
+        <div class="p-3 bg-leaf-50 rounded-xl border border-leaf-200">
+          <label class="block text-xs font-bold text-leaf-800 mb-1" data-i18n="label_diet_spec">Dietary Restrictions</label>
+          <input type="text" name="diet" placeholder="e.g., None, Vegetarian, No Peanuts" class="w-full bg-white border border-leaf-200 rounded-lg px-2.5 py-1.5 text-xs text-leaf-900 focus:outline-none">
+        </div>
+
+        <div class="p-3 bg-leaf-100/70 rounded-xl border border-leaf-200 flex items-center justify-between">
+          <span class="text-xs font-semibold text-leaf-800" data-i18n="label_est_total">Total Price:</span>
+          <span class="text-base font-bold text-leaf-700" id="modalCalculatedTotal">$96 USD</span>
+        </div>
+
+        <button type="submit" id="btnModalSubmit" class="w-full bg-leaf-600 hover:bg-leaf-700 text-white py-3 rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+          <span data-i18n="btn_proceed_payment">Proceed to Payment</span>
+          <i data-lucide="qr-code" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PAYMENT & CHECKOUT MODAL (CHUYỂN KHOẢN MB BANK MAI BẢO LONG) -->
+  <div id="paymentModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 shadow-2xl relative border border-leaf-200">
+      
+      <button onclick="closePaymentModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-leaf-100 text-leaf-800 hover:bg-leaf-200 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-full bg-leaf-100 text-leaf-700 flex items-center justify-center mx-auto mb-2 border border-leaf-200">
+          <i data-lucide="check" class="w-6 h-6"></i>
+        </div>
+        <span class="text-[11px] font-bold uppercase text-leaf-700 tracking-wider" data-i18n="pay_subhead">Booking Recorded!</span>
+        <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-leaf-900 mt-1" data-i18n="pay_title">Payment & Seat Confirmation</h3>
+        <p class="text-xs text-leaf-800 mt-1" data-i18n="pay_instruction">Scan the QR code via any banking app to confirm your reservation.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-leaf-50 rounded-2xl p-5 border border-leaf-200 mb-6">
+        <!-- Ảnh QR Code MB Bank -->
+        <div class="md:col-span-5 text-center flex flex-col items-center">
+          <div class="bg-white p-3 rounded-2xl shadow-md border border-leaf-200 inline-block">
+            <img id="paymentQrImg" src="" alt="VietQR MB Bank Transfer" class="w-48 h-48 object-contain rounded-lg">
+          </div>
+          <span class="text-[10px] font-bold text-leaf-800 mt-2 block" data-i18n="pay_qr_tip">Scan with any mobile banking app</span>
+        </div>
+
+        <!-- Thông tin STK MB Bank -->
+        <div class="md:col-span-7 space-y-3 text-xs">
+          <div class="flex items-center justify-between pb-2 border-b border-leaf-200">
+            <span class="text-leaf-800" data-i18n="pay_bank_lbl">Bank:</span>
+            <span class="font-bold text-leaf-900 flex items-center gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">MB</span>
+              MB Bank (Quân Đội)
+            </span>
+          </div>
+
+          <div class="flex items-center justify-between pb-2 border-b border-leaf-200">
+            <span class="text-leaf-800" data-i18n="pay_acc_lbl">Account Number:</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono font-bold text-clay-700 text-sm">01509072007</span>
+              <button type="button" onclick="copyText('01509072007', 'Copied account number!')" class="p-1 hover:bg-leaf-200 rounded text-leaf-700" title="Copy">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pb-2 border-b border-leaf-200">
+            <span class="text-leaf-800" data-i18n="pay_name_lbl">Account Name:</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-leaf-900">MAI BAO LONG</span>
+              <button type="button" onclick="copyText('MAI BAO LONG', 'Copied account name!')" class="p-1 hover:bg-leaf-200 rounded text-leaf-700" title="Copy">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pb-2 border-b border-leaf-200">
+            <span class="text-leaf-800" data-i18n="pay_amount_lbl">Transfer Amount:</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-leaf-700 text-base" id="payDisplayAmount">2,400,000 ₫</span>
+              <button type="button" onclick="copyRawAmount()" class="p-1 hover:bg-leaf-200 rounded text-leaf-700" title="Copy">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pb-1">
+            <span class="text-leaf-800" data-i18n="pay_memo_lbl">Payment Memo:</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono font-bold text-clay-700" id="payDisplayRef">CNNT-8492</span>
+              <button type="button" onclick="copyText(document.getElementById('payDisplayRef').textContent, 'Copied payment memo!')" class="p-1 hover:bg-leaf-200 rounded text-leaf-700" title="Copy">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-white rounded-2xl border border-leaf-200 text-xs space-y-1.5 mb-5">
+        <div class="flex justify-between">
+          <span class="text-leaf-800" data-i18n="pay_location_lbl">Meeting Location:</span>
+          <span class="font-semibold text-leaf-900" data-i18n="pay_location_val">Chợ Tân Định Gate, District 1, HCMC</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-leaf-800" data-i18n="pay_session_lbl">Session & Guests:</span>
+          <span class="font-semibold text-leaf-900" id="paySessionInfo">Morning Session • 2 Guests</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a id="btnConfirmWhatsapp" href="https://wa.me/84389981131" target="_blank" rel="noopener noreferrer" class="flex-1 bg-leaf-600 hover:bg-leaf-700 text-white py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span data-i18n="btn_confirm_wa">Confirm via Zalo / WhatsApp (0389981131)</span>
+        </a>
+        <button onclick="downloadCalendarInvite()" class="bg-leaf-100 hover:bg-leaf-200 text-leaf-900 px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-leaf-200">
+          <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+          <span data-i18n="btn_save_ics">Save to Calendar (.ics)</span>
+        </button>
+      </div>
+
+      <p class="text-[11px] text-center text-leaf-800 mt-4">
+        <span data-i18n="booking_notif_sent">Booking notification dispatched to:</span> <strong>comnhanguoitavn@gmail.com</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-leaf-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs pointer-events-none border border-leaf-800">
+    <i data-lucide="check-circle" class="w-4 h-4 text-leaf-400 shrink-0"></i>
+    <span id="toastMessage">Information saved successfully</span>
+  </div>
+
+  <!-- MULTILINGUAL & LOGIC SCRIPT -->
+  <script>
+    let currentLang = 'en';
+    let currentCurrency = 'USD';
+    let currentSession = 'morning';
+    let heroGuestCount = 2;
+    let inlineGuestCount = 2;
+    let selectedMenuTab = 'classic';
+    let lastGeneratedRef = 'CNNT-8492';
+    let lastTotalVND = 2400000;
+
+    const PRICING = {
+      USD: 48,
+      VND: 1200000,
+      EUR: 45
+    };
+
+    // TỪ ĐIỂN SONG NGỮ (BILINGUAL DICTIONARY)
+    const DICTIONARY = {
+      en: {
+        tagline: "Saigon Family Meal Experience",
+        nav_exp: "The Experience",
+        nav_menu: "Daily Mâm Cơm",
+        nav_hosts: "Our Family",
+        nav_reviews: "Guest Journal",
+        nav_faq: "FAQ",
+        btn_reserve: "Reserve a Seat",
+        select_currency: "Currency:",
+        hero_pill: "Authentic Cultural Immersion • District 1, Saigon",
+        hero_h1: "Sit at a Real <br><span class=\"text-leaf-600 italic\">Saigon Family Table</span>.",
+        hero_desc: "Skip commercial dining. Step into our family home in the heart of District 1. Explore historic Tân Định market, hand-cook generational homestyle dishes side-by-side, and share candid stories over a warm, communal Mâm Cơm.",
+        badge_max: "Max 8 Guests",
+        badge_home: "100% Home Cooked",
+        badge_diet: "Dietary Friendly",
+        badge_lang: "English & Tiếng Việt",
+        see_5_steps: "See the 5-Step Journey",
+        hero_reviews: "(140+ verified guests)",
+        available_daily: "Available Daily",
+        widget_title: "Reserve Your Spot",
+        widget_sub: "District 1 home table. Early reservation recommended.",
+        label_session: "Select Experience Session",
+        session_morning_name: "Morning Session",
+        session_morning_sub: "Tân Định Market + Lunch",
+        session_twilight_name: "Twilight Session",
+        session_twilight_sub: "Evening Feast + Tea",
+        label_date: "Date",
+        label_guests: "Guests",
+        label_est_total: "Estimated Total:",
+        label_all_inc: "All inclusive (Market, Meal, Tea)",
+        btn_continue_booking: "Continue to Reservation",
+        pill_cancel: "Free cancel up to 24h",
+        pill_no_fees: "No hidden fees",
+
+        exp_pill: "The 5-Step Intimate Experience",
+        exp_h2: "More Than a Cooking Class. <br><span class=\"italic text-leaf-600\">A Day in a Saigon Home.</span>",
+        exp_sub: "From the historic produce aisles of Chợ Tân Định to our family kitchen in District 1, experience the true warmth of southern Vietnamese home life.",
+        step1_tag: "Step One • ~60 Minutes",
+        step1_title: "Tân Định Wet Market Discovery",
+        step1_desc: "We meet at Chợ Tân Định, one of District 1's most iconic markets founded in the 1920s. We walk past aromatic herb vendors, tropical vegetables, and fresh catches from the Mekong Delta.",
+        step1_b1: "Touch & smell herbs: culantro, thai basil, perilla leaves",
+        step1_b2: "Learn respectful market customs with multi-generational vendors",
+        step1_b3: "Taste warm sticky rice treats or soy curd along the aisle",
+        kitchen_tag: "Our District 1 Home Kitchen",
+        step2_tag: "Step Two • ~90 Minutes",
+        step2_title: "Hands-on Home Cooking",
+        step2_desc: "Take a short stroll to our alley townhouse in District 1. Tie on an apron, drink calamansi cooler, and prepare 4 signature home dishes side-by-side with our family.",
+        step2_b1: "Master claypot caramelization (Kho Tộ) with cane sugar",
+        step2_b2: "Balance sweet tamarind broth and crispy wok-tossed greens",
+        step2_b3: "Hand-pound shallots and peppercorns in traditional stone mortars",
+        step3_tag: "Step Three • ~75 Minutes",
+        step3_title: "Dine, Connect & \"Mời Cơm\"",
+        step3_desc: "Gather around the iconic family round tray (Mâm Cơm). Experience the heartwarming custom of Mời Cơm—inviting elders and friends to start the meal.",
+        step3_b1: "Learn communal dining etiquette and chopstick courtesy",
+        step3_b2: "Heartfelt conversations about Saigon history, family values, and daily customs",
+        step3_b3: "Generous refills of jasmine rice cooked straight in earthenware pots",
+        mamcom_tag: "The Sacred Family \"Mâm Cơm\"",
+        step4_tag: "Step Four • ~45 Minutes",
+        step4_title: "Tea, Seasonal Treats & Daily Customs",
+        step4_desc: "Relax after the feast with a warm pot of lotus green tea, tropical fruits (pomelo, dragonfruit, rambutan), and handmade mung bean cakes while chatting like long-time friends.",
+        step4_quote: "\"The table cleanses, but the tea deepens the friendship. Ask us anything about life in Vietnam.\"",
+        step5_tag: "Step Five • Farewell Keepsakes",
+        step5_title: "Memories, Digital Photos & Recipe Kit",
+        step5_desc: "Receive a handcrafted spice souvenir tin, printable homestyle recipe cards, and a private cloud link to download candid photos captured throughout your journey.",
+        step5_photo_link: "Private photo album link sent directly to your email",
+
+        menu_pill: "The Anatomy of a Home Meal",
+        menu_h2: "The Balance of \"Mâm Cơm\"",
+        menu_sub: "A traditional Vietnamese meal is eaten together at the same time: savory braised dishes cut the rice, cleansing soup clears the palate, and crisp greens ground the feast.",
+        tab_classic: "Classic Southern Home",
+        tab_pescatarian: "Pescatarian & Seafood",
+        tab_vegan: "Plant-Based & Vegan (*Chay*)",
+        allergy_title: "Allergies & Clean Drinking Water Guarantee",
+        allergy_desc: "We strictly use triple-filtered RO water for cooking, stocks, and tea. Individual clay pots are prepared separately for gluten-free, peanut-free, or strict vegan guests without cross-contamination.",
+        btn_specify_diet: "Specify Dietary Needs",
+
+        host_quote: "\"In Saigon, you are only a stranger until you accept a warm bowl of rice.\"",
+        host_name: "— Cô Hương, Head Host",
+        hosts_pill: "Our Saigon Family",
+        hosts_h2: "Why We Opened Our <br><span class=\"italic text-leaf-600\">Family Kitchen to the World</span>",
+        hosts_p1: "We are Cô Hương and nephew Minh. Our family has lived in this quiet alley in District 1 for decades. Growing up, our dining table was always filled with laughter, clinking porcelain bowls, and the smell of braised fish caramelized over heat.",
+        hosts_p2: "International travelers often experience Saigon through restaurant chains. We founded Cơm Nhà Người Ta so visitors could experience what a real Vietnamese domestic meal feels like: eating together, learning about family life, and feeling at home.",
+        stat_d1: "Central location",
+        stat_recipe: "Family recipes",
+        stat_intimate: "Intimate guest limit",
+
+        portal_pill: "Interactive Reservation Portal",
+        portal_h2: "Book Your Family Table Experience",
+        portal_sub: "Secure your seats and complete payment via instant banking QR code transfer.",
+        form_step1_label: "Select Your Preferred Time",
+        session_morning_desc: "Chợ Tân Định wet market walk, peak morning ingredient sourcing, home cooking & lunch.",
+        session_morning_tip: "Best for market action & photography",
+        session_twilight_desc: "Afternoon market atmosphere, cozy sunset cooking, candlelight dinner & night tea.",
+        session_twilight_tip: "Best for relaxed dinner & sunset vibe",
+        form_step2_label: "Date & Party Size",
+        label_choose_date: "Choose Date",
+        sub_daily_run: "Experiences operate daily in District 1",
+        label_party_size: "Number of Guests (Max 8)",
+        form_step3_label: "Guest Details & Dietary Notes",
+        label_full_name: "Full Name",
+        label_email: "Email Address",
+        label_phone: "WhatsApp / Phone Number",
+        label_hotel: "Hotel in Saigon (District 1 / nearby)",
+        label_diet_spec: "Special Dietary Requirements (Optional)",
+        diet_veg: "Vegetarian / Vegan",
+        diet_gluten: "Gluten-Free",
+        diet_shellfish: "Shellfish Allergy",
+        diet_nut: "Nut / Peanut Free",
+        label_guests_txt: "Guests",
+        label_tax_inc: "Taxes, ingredients, fresh fruit & photo collection included.",
+        btn_proceed_payment: "Proceed to Payment",
+
+        reviews_pill: "Traveler Love & Honest Words",
+        reviews_h2: "Candid Voices From Our Table",
+        reviews_count: "142 Verified Reviews (Google & TripAdvisor)",
+        rev1_time: "2 weeks ago",
+        rev1_text: "\"Best highlight in Saigon! Walking through Chợ Tân Định in District 1 with Minh and Cô Hương felt so personal. Cooking caramelized fish in the claypot was an unforgettable cultural moment.\"",
+        rev2_time: "1 month ago",
+        rev2_text: "\"As a strict vegan, I often felt left out in meat-heavy tours. Here, they cooked special dishes with fresh mushrooms and tofu, keeping fish sauce completely away. Felt like real family.\"",
+        rev3_time: "Last month",
+        rev3_text: "\"The tea conversation after the meal in District 1 made our trip. We talked about Vietnamese daily habits, family structures, and Saigon life. Plus, candid photos were emailed the very same evening!\"",
+        gallery_h4: "Candid Moments Captured at Our Table",
+        gallery_sub: "Updated weekly",
+
+        faq_pill: "Got Questions?",
+        faq_h2: "Practical Information & FAQs",
+        faq_sub: "Everything you need to know before coming to our family table in District 1.",
+        faq_q1: "Where exactly do we meet in District 1?",
+        faq_a1: "We meet at the main entrance gate of <strong>Chợ Tân Định</strong> (Hai Bà Trưng Street, Tân Định Ward, District 1). It is easily reachable within 5–10 minutes via Grab car or taxi from Ben Thanh Market or Opera House. We provide live GPS links upon booking.",
+        faq_q2: "What should I wear for the wet market and home visit?",
+        faq_a2: "Dress casually for tropical weather! Flat walking shoes or sneakers with grip are recommended as market walkways can be wet from ice and fresh produce. Clean indoor slippers are provided when entering our home.",
+        faq_q3: "How clean is the food and water?",
+        faq_a3: "We uphold strict hygiene standards because our family eats the exact same meal with you. We use pure RO filtered drinking water for cooking, stocks, and tea. Herbs undergo careful multi-stage clean water rinses.",
+        faq_q4: "What is the cancellation policy? What if it rains?",
+        faq_a4: "100% refund for cancellations made up to 24 hours before your session. Tân Định market and our home are fully covered and air-conditioned, so rainy Saigon days run comfortably.",
+
+        loc_tag: "Prime Location • District 1, Ho Chi Minh City",
+        loc_h3: "Escape the tourist bubble. Join us in authentic District 1.",
+        loc_desc: "Experience the genuine culinary pulse of Saigon right in District 1, walking through Chợ Tân Định and down cozy residential alleyways where neighbors still know each other by name.",
+        btn_open_map: "Open in Google Maps",
+        btn_check_dates: "Check Available Dates",
+
+        footer_about: "An intimate culinary tourism experience in District 1, Saigon. Connecting international travelers with authentic Vietnamese family meals, Chợ Tân Định wet market, and genuine hospitality.",
+        footer_col_exp: "The Experience",
+        f_link1: "Tân Định Market Walk",
+        f_link2: "District 1 Home Kitchen",
+        f_link3: "Communal Dining",
+        f_link4: "Tea & Sweet Treats",
+        f_link5: "Recipe Keepsakes",
+        footer_col_info: "Information",
+        f_link6: "Dietary Adaptations",
+        f_link7: "About Our Family",
+        f_link8: "Hygiene & Safety",
+        f_link9: "Meeting Point Info",
+        f_link10: "Cancellation Terms",
+        footer_col_letter: "Saigon Hearth Letter",
+        letter_sub: "Send us feedback or subscribe to generational Saigon home recipes.",
+        btn_send: "Send",
+        session_hours: "Sessions: 08:30 (Morning) & 15:30 (Twilight)",
+        footer_signature: "Crafted with love for authentic cultural exchange",
+
+        modal_quick_title: "Quick Reservation",
+        modal_quick_h3: "Secure Your Place",
+        modal_quick_sub: "Max 8 seats per session in District 1.",
+
+        pay_subhead: "Booking Recorded!",
+        pay_title: "Payment & Seat Confirmation",
+        pay_instruction: "Scan the QR code via any banking app to confirm your reservation.",
+        pay_qr_tip: "Scan with any mobile banking app",
+        pay_bank_lbl: "Bank:",
+        pay_acc_lbl: "Account Number:",
+        pay_name_lbl: "Account Name:",
+        pay_amount_lbl: "Transfer Amount:",
+        pay_memo_lbl: "Payment Memo:",
+        pay_location_lbl: "Meeting Location:",
+        pay_location_val: "Chợ Tân Định Gate, District 1, HCMC",
+        pay_session_lbl: "Session & Guests:",
+        btn_confirm_wa: "Confirm via Zalo / WhatsApp (0389981131)",
+        btn_save_ics: "Save to Calendar (.ics)",
+        booking_notif_sent: "Booking notification dispatched to:"
+      },
+      vi: {
+        tagline: "Trải Nghiệm Bữa Cơm Gia Đình Sài Gòn",
+        nav_exp: "Hành Trình",
+        nav_menu: "Mâm Cơm Mỗi Ngày",
+        nav_hosts: "Gia Đình Chúng Tôi",
+        nav_reviews: "Nhật Ký Thực Khách",
+        nav_faq: "Hỏi Đáp FAQ",
+        btn_reserve: "Đặt Chỗ Ngay",
+        select_currency: "Đơn vị tiền tệ:",
+        hero_pill: "Trải Nghiệm Văn Hóa Bản Địa • Quận 1, Sài Gòn",
+        hero_h1: "Cùng Ngồi Vào <br><span class=\"text-leaf-600 italic\">Mâm Cơm Gia Đình Sài Gòn</span>.",
+        hero_desc: "Tạm gác lại những nhà hàng xô bồ. Hãy bước vào căn nhà ấm cúng của chúng tôi ngay Quận 1. Cùng dạo Chợ Tân Định trăm năm, tự tay nấu những món ăn gia đình truyền thống và quây quần bên Mâm Cơm đong đầy tình thân.",
+        badge_max: "Tối đa 8 Khách",
+        badge_home: "100% Cơm Nhà Nấu",
+        badge_diet: "Hỗ Trợ Món Chay/Dị Ứng",
+        badge_lang: "Song Ngữ Anh & Việt",
+        see_5_steps: "Xem 5 Bước Trải Nghiệm",
+        hero_reviews: "(Hơn 140+ khách đánh giá 5 sao)",
+        available_daily: "Mở Hàng Ngày",
+        widget_title: "Giữ Chỗ Bữa Cơm",
+        widget_sub: "Bếp nhà tại Quận 1. Đặt sớm để đảm bảo còn chỗ.",
+        label_session: "Chọn Khung Giờ Trải Nghiệm",
+        session_morning_name: "Buổi Sáng",
+        session_morning_sub: "Chợ Tân Định + Bữa Trưa",
+        session_twilight_name: "Buổi Chiều Tà",
+        session_twilight_sub: "Bữa Tối Ấm Cúng + Trà Đêm",
+        label_date: "Ngày Tham Gia",
+        label_guests: "Số Lượng Khách",
+        label_est_total: "Tạm Tính:",
+        label_all_inc: "Đã bao gồm tất cả (Đi chợ, Ăn uống, Trà hoa)",
+        btn_continue_booking: "Tiếp Tục Đặt Chỗ",
+        pill_cancel: "Hủy miễn phí trước 24h",
+        pill_no_fees: "Không phụ phí ẩn",
+
+        exp_pill: "Trọn Vẹn 5 Bước Trải Nghiệm",
+        exp_h2: "Không Chỉ Là Lớp Nấu Ăn. <br><span class=\"italic text-leaf-600\">Một Ngày Trở Về Nhà Ở Sài Gòn.</span>",
+        exp_sub: "Từ các sạp rau củ rộn ràng tại Chợ Tân Định đến góc bếp gia đình ấm áp tại Quận 1, chúng tôi đón bạn bằng tất cả sự chân thành của con người phương Nam.",
+        step1_tag: "Bước Một • ~60 Phút",
+        step1_title: "Dạo Chợ Truyền Thống Tân Định",
+        step1_desc: "Gặp gỡ tại Chợ Tân Định – một trong những ngôi chợ cổ kính và sầm uất bậc nhất Quận 1 từ thập niên 1920. Cùng len lỏi qua từng quầy rau thơm miền Tây, hải sản tươi rói và lắng nghe âm thanh đời sống.",
+        step1_b1: "Nhận biết & ngửi thử các loại rau thơm: ngò gai, húng quế, tía tô",
+        step1_b2: "Học nét văn hóa đi chợ và giao tiếp thân tình với các cô chú tiểu thương",
+        step1_b3: "Thưởng thức chén tàu hũ nóng hoặc xôi chuối nướng dọc lối đi",
+        kitchen_tag: "Gian Bếp Nhà Tại Quận 1",
+        step2_tag: "Bước Hai • ~90 Phút",
+        step2_title: "Tự Tay Vào Bếp Cùng Gia Đình",
+        step2_desc: "Tản bộ về căn nhà nhỏ ấm cúng trong con hẻm Quận 1. Cùng thắt tạp dề, nhấp ngụm trà tắc mát lạnh và bắt tay chuẩn bị 4 món ăn thuần vị quê nhà.",
+        step2_b1: "Học cách thắng nước màu đường thốt nốt và bí quyết kho tộ chuẩn vị",
+        step2_b2: "Nấu nồi canh chua thanh mát và xào đĩa rau muống giòn xanh",
+        step2_b3: "Dùng cối đá giã hành tiêu ớt cay nồng đúng kiểu truyền thống",
+        step3_tag: "Bước Ba • ~75 Phút",
+        step3_title: "Quây Quần Mâm Cơm & Tục \"Mời Cơm\"",
+        step3_desc: "Cùng ngồi xuống bên mâm cơm tròn. Trải nghiệm nét đẹp văn hóa \"Mời cơm\" – lời mời hiếu lễ trước khi cầm đũa chan canh, gắp cá.",
+        step3_b1: "Tìm hiểu văn hóa cầm bát, so đũa và phép tắc trên mâm cơm Việt",
+        step3_b2: "Trò chuyện cởi mở về ký ức Sài Gòn, đời sống và nếp nhà xưa nay",
+        step3_b3: "Cơm niêu gạo thơm luôn sẵn sàng xới thêm đầy ắp",
+        mamcom_tag: "Mâm Cơm Tròn Đong Đầy Tình Thân",
+        step4_tag: "Bước Bốn • ~45 Phút",
+        step4_title: "Thưởng Trà Sen, Trái Cây & Tâm Tình",
+        step4_desc: "Sau bữa cơm, cùng quây quần bên ấm trà sen nóng hổi, đĩa trái cây nhiệt đới ngọt mát (bưởi da xanh, chôm chôm, thanh long) và bánh đậu xanh thơm bùi.",
+        step4_quote: "\"Cơm no ấm dạ, chén trà đậm tình. Hãy cứ hỏi chúng tôi bất cứ điều gì bạn tò mò về cuộc sống Việt Nam.\"",
+        step5_tag: "Bước Năm • Quà Tặng Kỷ Niệm",
+        step5_title: "Kỷ Niệm, Ảnh Đẹp & Công Thức Món Ăn",
+        step5_desc: "Nhận món quà gia vị thủ công mang về, tập thẻ công thức các món vừa nấu và đường link tải bộ ảnh chụp khoảnh khắc tự nhiên trong suốt buổi trải nghiệm.",
+        step5_photo_link: "Album ảnh chất lượng cao gửi thẳng vào email của bạn",
+
+        menu_pill: "Cấu Trúc Bữa Ăn Thuần Việt",
+        menu_h2: "Cân Bằng Âm Dương Trên Mâm Cơm",
+        menu_sub: "Bữa cơm gia đình Việt luôn dọn cùng lúc: món mặn đậm đà đưa cơm, món canh thanh mát giải nhiệt và đĩa rau xanh giòn rụm hài hòa.",
+        tab_classic: "Mâm Cơm Nam Bộ Truyền Thống",
+        tab_pescatarian: "Mâm Cơm Hải Sản Tươi Ngon",
+        tab_vegan: "Mâm Cơm Chay Thanh Đạm (*Chay*)",
+        allergy_title: "Cam Kết Vệ Sinh An Toàn & Nước Lọc RO",
+        allergy_desc: "Chúng tôi sử dụng 100% nước lọc RO tinh khiết cho toàn bộ việc nấu nướng và pha trà. Có niêu đất nấu riêng biệt cho khách ăn chay, kiêng gluten hay dị ứng đậu phộng.",
+        btn_specify_diet: "Ghi Chú Chế Độ Ăn",
+
+        host_quote: "\"Ở Sài Gòn, người lạ cũng hóa người quen một khi đã cùng ngồi xuống bên mâm cơm ấm.\"",
+        host_name: "— Cô Hương, Chủ Nhà",
+        hosts_pill: "Về Gia Đình Chúng Tôi",
+        hosts_h2: "Vì Sao Chúng Tôi Mở <br><span class=\"italic text-leaf-600\">Căn Bếp Nhỏ Đón Khách Bốn Phương</span>",
+        hosts_p1: "Chúng tôi là Cô Hương và cháu trai Minh. Gia đình đã gắn bó với con hẻm rợp bóng cây tại Quận 1 này qua nhiều thế hệ. Từ nhỏ, mâm cơm nhà luôn đầy ắp tiếng cười, tiếng bát đũa lách cách và mùi cá kho thoang thoảng khói lam chiều.",
+        hosts_p2: "Khách du lịch quốc tế thường chỉ biết đến Sài Gòn qua các nhà hàng công nghiệp. Chúng tôi tạo nên Cơm Nhà Người Ta để bạn thực sự cảm nhận bữa cơm nhà người Việt là thế nào: cùng sẻ chia, thấu hiểu văn hóa và thấy ấm lòng như trở về nhà.",
+        stat_d1: "Trung tâm Quận 1",
+        stat_recipe: "Công thức gia truyền",
+        stat_intimate: "Tối đa 8 khách ấm cúng",
+
+        portal_pill: "Cổng Đặt Chỗ Trực Tuyến",
+        portal_h2: "Đặt Bàn Trải Nghiệm Cùng Chúng Tôi",
+        portal_sub: "Xác nhận số lượng khách và chuyển khoản giữ chỗ qua mã QR ngân hàng nhanh chóng.",
+        form_step1_label: "1. Chọn Buổi Trải Nghiệm",
+        session_morning_desc: "Dạo chợ sớm Tân Định, chọn nguyên liệu tươi ngon nhất, về nhà cùng nấu và ăn trưa.",
+        session_morning_tip: "Thích hợp cho người thích chụp ảnh và khám phá chợ nhộn nhịp",
+        session_twilight_desc: "Không khí chợ chiều dịu mát, nấu nướng dưới ánh hoàng hôn và ăn tối ấm áp bên ngọn đèn dầu.",
+        session_twilight_tip: "Thích hợp cho bữa tối lãng mạn, thư giãn sau ngày dài",
+        form_step2_label: "2. Ngày Đi & Số Lượng Khách",
+        label_choose_date: "Chọn Ngày",
+        sub_daily_run: "Tour tổ chức đều đặn mỗi ngày tại Quận 1",
+        label_party_size: "Số Lượng Khách (Tối đa 8)",
+        form_step3_label: "3. Thông Tin Khách & Lưu Ý Ăn Uống",
+        label_full_name: "Họ và Tên",
+        label_email: "Địa Chỉ Email",
+        label_phone: "Số Điện Thoại / WhatsApp / Zalo",
+        label_hotel: "Khách Sạn Tại Sài Gòn (Nếu có)",
+        label_diet_spec: "Yêu Cầu Ăn Uống Đặc Biệt (Không bắt buộc)",
+        diet_veg: "Ăn Chay (Vegetarian / Vegan)",
+        diet_gluten: "Kiêng Gluten",
+        diet_shellfish: "Dị Ứng Hải Sản có vỏ",
+        diet_nut: "Dị Ứng Đậu Phộng / Các loại hạt",
+        label_guests_txt: "Khách",
+        label_tax_inc: "Đã bao gồm toàn bộ nguyên liệu, đồ ăn, quà kỷ niệm và bộ ảnh lưu niệm.",
+        btn_proceed_payment: "Chuyển Sang Thanh Toán QR",
+
+        reviews_pill: "Thực Khách Nói Về Chúng Tôi",
+        reviews_h2: "Những Chia Sẻ Thân Tình Sau Bữa Ăn",
+        reviews_count: "142 Đánh giá xác thực (Google & TripAdvisor)",
+        rev1_time: "2 tuần trước",
+        rev1_text: "\"Trải nghiệm tuyệt vời nhất chuyến đi Sài Gòn! Dạo chợ Tân Định cùng Minh và cô Hương rất gần gũi. Tự tay nấu niêu cá kho tộ đậm đà thơm nức mũi quả là ký ức không thể nào quên.\"",
+        rev2_time: "1 tháng trước",
+        rev2_text: "\"Mình là người ăn chay trường nên rất sợ đi tour ẩm thực. Nhưng ở đây cô Hương làm riêng các món nấm kho tiêu xanh và đậu hũ rất tinh tế, không dính chút nước mắm nào. Cảm giác như được người nhà chăm sóc.\"",
+        rev3_time: "Tháng trước",
+        rev3_text: "\"Buổi trò chuyện bên tách trà sen sau bữa ăn tại Quận 1 mở ra cho chúng tôi nhiều góc nhìn sâu sắc về văn hóa gia đình Việt Nam. Tối về lại nhận được ngay link ảnh chụp siêu đẹp!\"",
+        gallery_h4: "Khoảnh Khắc Đời Thường Bên Mâm Cơm",
+        gallery_sub: "Cập nhật hàng tuần",
+
+        faq_pill: "Bạn Có Thắc Mắc?",
+        faq_h2: "Thông Tin Cần Biết & Hỏi Đáp",
+        faq_sub: "Tất cả thông tin chi tiết trước khi bạn đến với gian bếp của chúng tôi tại Quận 1.",
+        faq_q1: "Địa điểm tập trung chính xác ở đâu tại Quận 1?",
+        faq_a1: "Chúng ta sẽ gặp nhau ngay cổng chính <strong>Chợ Tân Định</strong> (đường Hai Bà Trưng, Phường Tân Định, Quận 1). Địa điểm rất dễ đi Grab từ chợ Bến Thành hay các khách sạn trung tâm. Chúng tôi sẽ gửi định vị chi tiết khi bạn đặt chỗ.",
+        faq_q2: "Nên mặc trang phục gì khi đi chợ và đến nhà?",
+        faq_a2: "Hãy mặc trang phục thoải mái, thoáng mát. Khuyên bạn nên mang giày bệt hoặc giày thể thao vì sàn chợ đôi lúc ẩm ướt. Khi vào nhà sẽ đổi sang dép đi trong nhà sạch sẽ do chúng tôi chuẩn bị.",
+        faq_q3: "Vấn đề vệ sinh thực phẩm và nước uống như thế nào?",
+        faq_a3: "Gia đình chúng tôi cùng ăn chung bữa cơm với bạn nên tiêu chuẩn vệ sinh luôn đặt lên hàng đầu. Toàn bộ nước nấu nướng và pha trà đều qua máy lọc RO. Rau sống được rửa kỹ nhiều lần bằng nước sạch.",
+        faq_q4: "Chính sách hủy chỗ như thế nào? Trời mưa có đi được không?",
+        faq_a4: "Bạn được hoàn tiền 100% nếu hủy trước 24 giờ. Chợ Tân Định và nhà của chúng tôi đều có mái che và máy lạnh nên trời mưa tour vẫn diễn ra bình thường và rất ấm cúng.",
+
+        loc_tag: "Vị Trí Trung Tâm • Quận 1, TP. Hồ Chí Minh",
+        loc_h3: "Bỏ lại ồn ào phố thị. Về với gian bếp ấm tại Quận 1.",
+        loc_desc: "Cảm nhận trọn vẹn nhịp sống thường nhật của Sài Gòn ngay trung tâm Quận 1, tản bộ qua ngôi chợ trăm năm và bước vào con hẻm bình yên nơi hàng xóm vẫn luôn chào nhau nồng hậu.",
+        btn_open_map: "Mở Trên Google Maps",
+        btn_check_dates: "Xem Ngày Còn Trống",
+
+        footer_about: "Trải nghiệm du lịch văn hóa ẩm thực gia đình tại Quận 1, Sài Gòn. Kết nối du khách với bữa cơm nhà mộc mạc, chợ truyền thống Tân Định và lòng hiếu khách phương Nam.",
+        footer_col_exp: "Trải Nghiệm",
+        f_link1: "Dạo Chợ Tân Định",
+        f_link2: "Bếp Nhà Quận 1",
+        f_link3: "Quây Quần Mâm Cơm",
+        f_link4: "Trà & Bánh Ngọt",
+        f_link5: "Quà Tặng Công Thức",
+        footer_col_info: "Thông Tin",
+        f_link6: "Chế Độ Ăn Uống",
+        f_link7: "Về Gia Đình Chúng Tôi",
+        f_link8: "Vệ Sinh An Toàn",
+        f_link9: "Điểm Hẹn Đón Tiếp",
+        f_link10: "Quy Định Đổi Hủy",
+        footer_col_letter: "Thư Bếp Sài Gòn",
+        letter_sub: "Để lại email để nhận công thức nấu ăn gia truyền và gửi góp ý cho chúng tôi.",
+        btn_send: "Gửi",
+        session_hours: "Ca trải nghiệm: 08:30 (Sáng) & 15:30 (Chiều tà)",
+        footer_signature: "Thực hiện với tình yêu dành cho văn hóa ẩm thực gia đình Việt",
+
+        modal_quick_title: "Đặt Chỗ Nhanh",
+        modal_quick_h3: "Giữ Chỗ Cho Đoàn Của Bạn",
+        modal_quick_sub: "Tối đa 8 khách mỗi ca tại Quận 1.",
+
+        pay_subhead: "Đã Ghi Nhận Đơn Đặt Bàn!",
+        pay_title: "Thanh Toán & Xác Nhận Chỗ",
+        pay_instruction: "Quét mã VietQR qua ứng dụng ngân hàng bất kỳ để hoàn tất giữ chỗ.",
+        pay_qr_tip: "Quét bằng ứng dụng Ngân hàng bất kỳ",
+        pay_bank_lbl: "Ngân hàng:",
+        pay_acc_lbl: "Số tài khoản:",
+        pay_name_lbl: "Chủ tài khoản:",
+        pay_amount_lbl: "Số tiền chuyển khoản:",
+        pay_memo_lbl: "Nội dung chuyển khoản:",
+        pay_location_lbl: "Địa điểm tập trung:",
+        pay_location_val: "Cổng Chợ Tân Định, Quận 1, TP.HCM",
+        pay_session_lbl: "Buổi & Số khách:",
+        btn_confirm_wa: "Xác nhận qua Zalo / WhatsApp (0389981131)",
+        btn_save_ics: "Lưu Vào Lịch (.ics)",
+        booking_notif_sent: "Thông báo đơn đặt đã được chuyển tới:"
+      }
+    };
+
+    // DỮ LIỆU MÓN ĂN SONG NGỮ
+    const MENU_DATA = {
+      classic: {
+        en: [
+          { pillar: "Món Mặn (Savory Protein)", name: "Cá Bông Lau Kho Tộ", desc: "Freshwater fish braised slowly in black claypots with caramelized palm sugar, shallots, bird's eye chili, and Phú Quốc pepper.", icon: "flame" },
+          { pillar: "Món Xào (Crisp Greens)", name: "Rau Muống Xào Tỏi Giòn", desc: "Fresh water spinach selected at Chợ Tân Định, wok-tossed over high flame with fragrant crushed garlic.", icon: "leaf" },
+          { pillar: "Món Canh (Cleansing Broth)", name: "Canh Chua Nam Bộ & Bạc Hà", desc: "Southern sweet and sour tamarind soup with pineapple, ripe tomatoes, sponge mint, and fresh culantro herb.", icon: "soup" },
+          { pillar: "Cơm Trắng (Pure Rice)", name: "Cơm Niêu Gạo Nàng Thơm", desc: "Fragrant southern jasmine grain steamed inside unglazed earthen pots until light, fluffy, and aromatic.", icon: "bowl" }
+        ],
+        vi: [
+          { pillar: "Món Mặn Đậm Đà", name: "Cá Bông Lau Kho Tộ", desc: "Cá bông lau tươi kho niêu đất sánh quyện nước màu dừa, thơm nồng tiêu sọ Phú Quốc, ớt hiểm và hành lá.", icon: "flame" },
+          { pillar: "Món Xào Giòn Ngọt", name: "Rau Muống Xào Tỏi Giòn", desc: "Rau muống non mua sớm ở chợ Tân Định, đảo lửa lớn với tỏi đập dập thơm lừng xanh mướt.", icon: "leaf" },
+          { pillar: "Món Canh Thanh Mát", name: "Canh Chua Nam Bộ & Bạc Hà", desc: "Vị chua thanh từ me chín, thơm chín, cà chua, đậu bắp giòn rụm và rau ngò gai tươi mát.", icon: "soup" },
+          { pillar: "Cơm Trắng Dẻo Thơm", name: "Cơm Niêu Gạo Nàng Thơm", desc: "Hạt gạo Nàng Thơm Chợ Đào nấu trong niêu đất giữ nhiệt, hạt cơm trắng dẻo thoang thoảng khói lam.", icon: "bowl" }
+        ]
+      },
+      pescatarian: {
+        en: [
+          { pillar: "Món Mặn (Savory Seafood)", name: "Tôm Sú Rim Nước Dừa", desc: "Fresh prawns simmered in young coconut water until reduced down to a glistening savory-sweet glaze.", icon: "fish" },
+          { pillar: "Món Xào (Crisp Greens)", name: "Bông Bí Xào Nấm Rơm", desc: "Delicate pumpkin blossoms sautéed with fresh straw mushrooms and sweet shallots.", icon: "leaf" },
+          { pillar: "Món Canh (Seafood Broth)", name: "Canh Cải Xanh Nấu Tôm", desc: "Crisp mustard greens cooked in sweet fresh shrimp broth and crushed ginger.", icon: "soup" },
+          { pillar: "Cơm Trắng (Pure Rice)", name: "Cơm Niêu Lá Dứa", desc: "Steamed jasmine rice infused with natural pandan leaves harvested from our courtyard.", icon: "bowl" }
+        ],
+        vi: [
+          { pillar: "Món Mặn Tôm Tươi", name: "Tôm Sú Rim Nước Dừa", desc: "Tôm sú sông rim đượm nước dừa xiêm Bến Tre cho đến khi áo lớp màu vàng cam óng ánh ngọt bùi.", icon: "fish" },
+          { pillar: "Món Xào Hoa Đồng Cỏ Nội", name: "Bông Bí Xào Nấm Rơm", desc: "Đọt bông bí vàng tươi ngọt giòn xào với nấm rơm quê và hành tím Lý Sơn thơm phức.", icon: "leaf" },
+          { pillar: "Món Canh Tôm Ngọt Lành", name: "Canh Cải Xanh Nấu Tôm", desc: "Vị nồng ấm của cải xanh hòa cùng vị ngọt tự nhiên của tôm quết và vài lát gừng ấm bụng.", icon: "soup" },
+          { pillar: "Cơm Trắng Hương Thảo Mộc", name: "Cơm Niêu Lá Dứa", desc: "Cơm niêu thơm lừng mùi lá dứa vườn nhà hái sáng sớm, hạt cơm xanh nhẹ tự nhiên.", icon: "bowl" }
+        ]
+      },
+      vegan: {
+        en: [
+          { pillar: "Món Mặn (Savory Plant-Based)", name: "Nấm Đông Cô Kho Tiêu Xanh", desc: "Plump fresh mushrooms braised with soy sauce, coconut water reduction, and aromatic green peppercorns.", icon: "sprout" },
+          { pillar: "Món Xào (Wok Greens)", name: "Đậu Bắp Nướng Mỡ Hành Chay", desc: "Charred fresh okra drizzled with fragrant scallion oil and crushed roasted peanuts.", icon: "leaf" },
+          { pillar: "Món Canh (Herbal Soup)", name: "Canh Chua Nấm & Đậu Hũ", desc: "Tangy tamarind soup brimming with soft silken tofu, tomatoes, sweet pineapple, and rice paddy herbs.", icon: "soup" },
+          { pillar: "Cơm Trắng (Pure Rice)", name: "Cơm Gạo Lứt Hấp Hạt Sen", desc: "Steamed wholesome brown rice wrapped in lotus leaves with fresh tender lotus seeds.", icon: "bowl" }
+        ],
+        vi: [
+          { pillar: "Món Mặn Chay Đậm Vị", name: "Nấm Đông Cô Kho Tiêu Xanh", desc: "Nấm tươi dày mọng kho nước tương ủ thủ công, tiêu xanh đập dập thơm the ấm nồng.", icon: "sprout" },
+          { pillar: "Món Xào Dân Dã Chay", name: "Đậu Bắp Nướng Mỡ Hành Chay", desc: "Đậu bắp nướng thơm rưới mỡ hành boa-rô béo ngậy, rắc đậu phộng rang giòn rụm chấm nước tương gừng.", icon: "leaf" },
+          { pillar: "Canh Chua Chay Thanh Vị", name: "Canh Chua Nấm & Đậu Hũ", desc: "Đậu hũ non mềm tan trong nước canh chua me dìu dịu cùng ngò ôm, ngò gai tươi mát.", icon: "soup" },
+          { pillar: "Cơm Gạo Lứt Dưỡng Sinh", name: "Cơm Gạo Lứt Hấp Hạt Sen", desc: "Gạo lứt đỏ bùi ngậy hấp gói trong lá sen tươi cùng những hạt sen Huế ngọt bở bổ dưỡng.", icon: "bowl" }
+        ]
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('userLang', lang);
+
+      // Cập nhật giao diện nút bấm ngôn ngữ
+      const btnEn = document.getElementById('btnLangEn');
+      const btnVi = document.getElementById('btnLangVi');
+      const btnMEn = document.getElementById('btnMobileLangEn');
+      const btnMVi = document.getElementById('btnMobileLangVi');
+
+      if (lang === 'vi') {
+        if (btnEn) btnEn.className = "px-2.5 py-1 rounded-full text-leaf-800 hover:text-leaf-600 transition-all";
+        if (btnVi) btnVi.className = "px-2.5 py-1 rounded-full transition-all bg-leaf-600 text-white shadow-xs";
+        if (btnMEn) btnMEn.className = "px-2 py-0.5 rounded-full text-leaf-800";
+        if (btnMVi) btnMVi.className = "px-2 py-0.5 rounded-full bg-leaf-600 text-white";
+      } else {
+        if (btnEn) btnEn.className = "px-2.5 py-1 rounded-full transition-all bg-leaf-600 text-white shadow-xs";
+        if (btnVi) btnVi.className = "px-2.5 py-1 rounded-full text-leaf-800 hover:text-leaf-600 transition-all";
+        if (btnMEn) btnMEn.className = "px-2 py-0.5 rounded-full bg-leaf-600 text-white";
+        if (btnMVi) btnMVi.className = "px-2 py-0.5 rounded-full text-leaf-800";
+      }
+
+      // Quét và cập nhật toàn bộ thẻ có thuộc tính data-i18n
+      const texts = DICTIONARY[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (texts[key]) {
+          el.innerHTML = texts[key];
+        }
+      });
+
+      renderMenuCards(selectedMenuTab);
+      updateInlineGuestDisplay();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function formatCurrency(amount, currency) {
+      if (currency === 'VND') {
+        return new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
+      } else if (currency === 'EUR') {
+        return '€' + amount.toFixed(0);
+      } else {
+        return '$' + amount.toFixed(0) + ' USD';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('userLang') || 'en';
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const isoDate = tomorrow.toISOString().split('T')[0];
+
+      const heroDate = document.getElementById('heroDateInput');
+      const bookingDate = document.getElementById('bookingDateInput');
+      const modalDate = document.getElementById('modalDateInput');
+
+      if (heroDate) heroDate.value = isoDate;
+      if (bookingDate) bookingDate.value = isoDate;
+      if (modalDate) modalDate.value = isoDate;
+
+      setLanguage(savedLang);
+      updatePriceDisplays();
+      if (window.lucide) lucide.createIcons();
+    });
+
+    function updateCurrency(newCurrency) {
+      currentCurrency = newCurrency;
+      const selector = document.getElementById('currencySelector');
+      const mobileSelector = document.getElementById('mobileCurrencySelector');
+      if (selector) selector.value = newCurrency;
+      if (mobileSelector) mobileSelector.value = newCurrency;
+
+      updatePriceDisplays();
+      showToast(currentLang === 'vi' ? `Đã đổi tiền tệ sang ${newCurrency}` : `Currency updated to ${newCurrency}`);
+    }
+
+    function updatePriceDisplays() {
+      const rate = PRICING[currentCurrency];
+      
+      const navPrice = document.querySelector('.display-price-nav');
+      if (navPrice) {
+        navPrice.textContent = formatCurrency(rate, currentCurrency);
+      }
+
+      const heroCalculated = document.getElementById('heroCalculatedTotal');
+      if (heroCalculated) {
+        heroCalculated.textContent = formatCurrency(rate * heroGuestCount, currentCurrency);
+      }
+
+      const pricePerPersonLabel = document.getElementById('pricePerPersonLabel');
+      const summaryGrandTotal = document.getElementById('summaryGrandTotal');
+      if (pricePerPersonLabel) {
+        pricePerPersonLabel.textContent = formatCurrency(rate, currentCurrency);
+      }
+      if (summaryGrandTotal) {
+        summaryGrandTotal.textContent = formatCurrency(rate * inlineGuestCount, currentCurrency);
+      }
+
+      const amountVndInput = document.getElementById('formAmountVndInput');
+      if (amountVndInput) {
+        amountVndInput.value = inlineGuestCount * PRICING['VND'];
+      }
+
+      updateModalCalculations();
+    }
+
+    function setHeroSession(session) {
+      currentSession = session;
+      const morningBtn = document.getElementById('heroSessionMorning');
+      const twilightBtn = document.getElementById('heroSessionTwilight');
+
+      if (session === 'morning') {
+        morningBtn.className = "session-btn p-3 rounded-xl border-2 border-leaf-600 bg-leaf-100/60 text-left transition-all";
+        twilightBtn.className = "session-btn p-3 rounded-xl border border-leaf-200 bg-white hover:border-leaf-300 text-left transition-all";
+      } else {
+        twilightBtn.className = "session-btn p-3 rounded-xl border-2 border-leaf-600 bg-leaf-100/60 text-left transition-all";
+        morningBtn.className = "session-btn p-3 rounded-xl border border-leaf-200 bg-white hover:border-leaf-300 text-left transition-all";
+      }
+    }
+
+    function adjustHeroGuests(delta) {
+      const newCount = heroGuestCount + delta;
+      if (newCount >= 1 && newCount <= 8) {
+        heroGuestCount = newCount;
+        const guestWord = currentLang === 'vi' ? 'Khách' : (heroGuestCount === 1 ? 'Guest' : 'Guests');
+        document.getElementById('heroGuestCount').textContent = `${heroGuestCount} ${guestWord}`;
+        updatePriceDisplays();
+      }
+    }
+
+    function proceedToBookingFromHero() {
+      inlineGuestCount = heroGuestCount;
+      const heroDate = document.getElementById('heroDateInput').value;
+      if (heroDate) {
+        document.getElementById('bookingDateInput').value = heroDate;
+      }
+      handleSessionChange(currentSession);
+      updateInlineGuestDisplay();
+
+      const section = document.getElementById('booking-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function handleSessionChange(session) {
+      currentSession = session;
+      const morningLabel = document.getElementById('labelMorning');
+      const twilightLabel = document.getElementById('labelTwilight');
+
+      if (session === 'morning') {
+        morningLabel.className = "relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-600 bg-leaf-100/50";
+        twilightLabel.className = "relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-200 bg-white hover:border-leaf-300";
+      } else {
+        twilightLabel.className = "relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-600 bg-leaf-100/50";
+        morningLabel.className = "relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-leaf-200 bg-white hover:border-leaf-300";
+      }
+    }
+
+    function changeGuestCount(delta) {
+      const newCount = inlineGuestCount + delta;
+      if (newCount >= 1 && newCount <= 8) {
+        inlineGuestCount = newCount;
+        updateInlineGuestDisplay();
+        updatePriceDisplays();
+      }
+    }
+
+    function updateInlineGuestDisplay() {
+      const guestWord = currentLang === 'vi' ? 'Khách' : (inlineGuestCount === 1 ? 'Guest' : 'Guests');
+      document.getElementById('bookingGuestNumber').textContent = `${inlineGuestCount} ${guestWord}`;
+      document.getElementById('summaryGuestCount').textContent = inlineGuestCount;
+      
+      const seatsLeft = 8 - inlineGuestCount;
+      const seatText = document.getElementById('seatAvailabilityText');
+      if (seatsLeft === 0) {
+        seatText.textContent = currentLang === 'vi' ? "Đã bao trọn mâm cơm!" : "Full private table!";
+        seatText.className = "block text-[10px] text-clay-600 font-bold";
+      } else {
+        seatText.textContent = currentLang === 'vi' ? `Còn lại ${seatsLeft} ghế trống` : `${seatsLeft} seats remaining`;
+        seatText.className = "block text-[10px] text-leaf-700 font-semibold";
+      }
+    }
+
+    function switchMenuTab(tabKey) {
+      selectedMenuTab = tabKey;
+      const btnClassic = document.getElementById('tabBtnClassic');
+      const btnPescatarian = document.getElementById('tabBtnPescatarian');
+      const btnVegan = document.getElementById('tabBtnVegan');
+
+      [btnClassic, btnPescatarian, btnVegan].forEach(btn => {
+        btn.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-leaf-900 hover:bg-leaf-100 shadow-sm border border-leaf-200";
+      });
+
+      if (tabKey === 'classic') {
+        btnClassic.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-leaf-600 text-white";
+      } else if (tabKey === 'pescatarian') {
+        btnPescatarian.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-leaf-600 text-white";
+      } else {
+        btnVegan.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-leaf-600 text-white";
+      }
+
+      renderMenuCards(tabKey);
+    }
+
+    function renderMenuCards(tabKey) {
+      const container = document.getElementById('menuCardsContainer');
+      const items = MENU_DATA[tabKey][currentLang];
+      if (!container || !items) return;
+
+      const sourcingText = currentLang === 'vi' ? 'Nguyên liệu tươi mua tại Chợ Tân Định' : 'Fresh Daily Sourcing at Chợ Tân Định';
+
+      container.innerHTML = items.map(item => `
+        <div class="bg-white rounded-3xl p-6 border border-leaf-200 flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-leaf-50 text-leaf-600 flex items-center justify-center mb-4 border border-leaf-200">
+              <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+            </div>
+            <span class="text-[11px] font-bold uppercase text-leaf-700 tracking-wider block mb-1">${item.pillar}</span>
+            <h4 class="font-editorial text-lg font-bold text-leaf-900 mb-2">${item.name}</h4>
+            <p class="text-xs text-leaf-800 leading-relaxed">${item.desc}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-leaf-100 flex items-center text-[10px] text-leaf-700 font-bold">
+            <i data-lucide="check" class="w-3.5 h-3.5 mr-1"></i> ${sourcingText}
+          </div>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.remove('hidden');
+      updateModalCalculations();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.add('hidden');
+    }
+
+    function updateModalCalculations() {
+      const guests = parseInt(document.getElementById('modalGuestSelect').value, 10);
+      const rate = PRICING[currentCurrency];
+      const total = guests * rate;
+      document.getElementById('modalCalculatedTotal').textContent = formatCurrency(total, currentCurrency);
+    }
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('hidden');
+    }
+
+    function toggleFaq(id) {
+      const answer = document.getElementById(`faqAnswer-${id}`);
+      const icon = document.getElementById(`faqIcon-${id}`);
+      const isHidden = answer.classList.contains('hidden');
+
+      for (let i = 1; i <= 4; i++) {
+        const a = document.getElementById(`faqAnswer-${i}`);
+        const ic = document.getElementById(`faqIcon-${i}`);
+        if (a) a.classList.add('hidden');
+        if (ic) ic.classList.remove('rotate-180');
+      }
+
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    // MỞ MODAL THANH TOÁN (PAYMENT SCREEN)
+    function openPaymentScreen(guests, session, date, clientName, clientPhone) {
+      const ref = 'CNNT-' + Math.floor(1000 + Math.random() * 9000);
+      lastGeneratedRef = ref;
+      const totalVND = guests * PRICING['VND'];
+      lastTotalVND = totalVND;
+
+      document.getElementById('payDisplayRef').textContent = ref;
+      document.getElementById('payDisplayAmount').textContent = formatCurrency(totalVND, 'VND');
+      
+      const sessionName = session === 'morning' ? (currentLang === 'vi' ? 'Buổi Sáng (08:30)' : 'Morning (08:30)') : (currentLang === 'vi' ? 'Buổi Chiều (15:30)' : 'Twilight (15:30)');
+      const guestWord = currentLang === 'vi' ? 'Khách' : 'Guests';
+      document.getElementById('paySessionInfo').textContent = `${sessionName} • ${guests} ${guestWord} • ${date || 'Upcoming'}`;
+
+      // Tạo QR MB Bank cho Mai Bảo Long (STK: 01509072007)
+      const qrApiUrl = `https://img.vietqr.io/image/MB-01509072007-compact2.png?amount=${totalVND}&addInfo=${encodeURIComponent(ref)}&accountName=MAI%20BAO%20LONG`;
+      document.getElementById('paymentQrImg').src = qrApiUrl;
+
+      // Cập nhật tin nhắn WhatsApp/Zalo xác nhận
+      const waMsg = encodeURIComponent(
+        currentLang === 'vi'
+          ? `Chào Cơm Nhà Người Ta, tôi là ${clientName || 'khách'} (SĐT: ${clientPhone || ''}). Tôi vừa đặt chỗ mã ${ref} (${guests} khách) và đã chuyển khoản ${formatCurrency(totalVND, 'VND')}. Vui lòng kiểm tra giúp tôi nhé!`
+          : `Hello Com Nha Nguoi Ta, I am ${clientName || 'guest'} (Phone: ${clientPhone || ''}). I have placed booking ${ref} for ${guests} guests and completed the transfer of ${formatCurrency(totalVND, 'VND')}. Please verify my reservation!`
+      );
+      document.getElementById('btnConfirmWhatsapp').href = `https://wa.me/84389981131?text=${waMsg}`;
+
+      document.getElementById('paymentModal').classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.add('hidden');
+    }
+
+    // Gửi form đặt chỗ chính
+    function handleFormSubmission(event) {
+      event.preventDefault();
+      const form = event.target;
+      const btn = document.getElementById('btnSubmitBooking');
+      
+      document.getElementById('formSessionInput').value = currentSession;
+      document.getElementById('formGuestInput').value = inlineGuestCount;
+      document.getElementById('formAmountVndInput').value = inlineGuestCount * PRICING['VND'];
+
+      const date = document.getElementById('bookingDateInput').value;
+      const clientName = document.getElementById('inlineClientName').value;
+      const clientPhone = document.getElementById('inlineClientPhone').value;
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>${currentLang === 'vi' ? 'Đang Xử Lý...' : 'Processing...'}</span>`;
+
+      const formData = new FormData(form);
+
+      fetch("https://formsubmit.co/ajax/comnhanguoitavn@gmail.com", {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(() => {
+        btn.disabled = false;
+        btn.innerHTML = `<span>${currentLang === 'vi' ? 'Chuyển Sang Thanh Toán' : 'Proceed to Payment'}</span><i data-lucide="qr-code" class="w-4 h-4"></i>`;
+        form.reset();
+        openPaymentScreen(inlineGuestCount, currentSession, date, clientName, clientPhone);
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.innerHTML = `<span>${currentLang === 'vi' ? 'Chuyển Sang Thanh Toán' : 'Proceed to Payment'}</span>`;
+        openPaymentScreen(inlineGuestCount, currentSession, date, clientName, clientPhone);
+      });
+    }
+
+    // Gửi form modal đặt chỗ nhanh
+    function handleModalFormSubmission(event) {
+      event.preventDefault();
+      const form = event.target;
+      const btn = document.getElementById('btnModalSubmit');
+      
+      const guests = parseInt(document.getElementById('modalGuestSelect').value, 10);
+      const date = document.getElementById('modalDateInput').value;
+      const session = document.getElementById('modalSessionSelect').value;
+      const clientName = document.getElementById('modalClientName').value;
+      const clientPhone = document.getElementById('modalClientPhone').value;
+
+      btn.disabled = true;
+      btn.textContent = currentLang === 'vi' ? 'Đang Xử Lý...' : 'Processing...';
+
+      const formData = new FormData(form);
+
+      fetch("https://formsubmit.co/ajax/comnhanguoitavn@gmail.com", {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(() => {
+        btn.disabled = false;
+        btn.textContent = currentLang === 'vi' ? 'Chuyển Sang Thanh Toán' : 'Proceed to Payment';
+        closeBookingModal();
+        form.reset();
+        openPaymentScreen(guests, session, date, clientName, clientPhone);
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = currentLang === 'vi' ? 'Chuyển Sang Thanh Toán' : 'Proceed to Payment';
+        closeBookingModal();
+        openPaymentScreen(guests, session, date, clientName, clientPhone);
+      });
+    }
+
+    function copyText(text, message) {
+      const msg = currentLang === 'vi' ? 'Đã sao chép vào bộ nhớ tạm!' : message;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showToast(msg));
+      } else {
+        const dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        showToast(msg);
+      }
+    }
+
+    function copyRawAmount() {
+      copyText(lastTotalVND.toString(), `Copied: ${formatCurrency(lastTotalVND, 'VND')}`);
+    }
+
+    function downloadCalendarInvite() {
+      const ref = lastGeneratedRef;
+      const icsData = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Com Nha Nguoi Ta//Saigon Experience//EN",
+        "BEGIN:VEVENT",
+        "SUMMARY:Cơm Nhà Người Ta — Saigon Family Meal Experience",
+        "DESCRIPTION:Cultural family meal in District 1. Booking: " + ref + ". Host Hotline: 0389981131. Meeting at Chợ Tân Định gate.",
+        "LOCATION:Chợ Tân Định, Hai Bà Trưng Street, District 1, Ho Chi Minh City, Vietnam",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute("download", `com-nha-nguoi-ta-${ref}.ics`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast(currentLang === 'vi' ? "Đã tải file lịch (.ics) về máy!" : "Calendar invite (.ics) downloaded!");
+    }
+
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch("https://formsubmit.co/ajax/comnhanguoitavn@gmail.com", {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(() => {
+        form.reset();
+        showToast(currentLang === 'vi' ? "Đã gửi tin về comnhanguoitavn@gmail.com!" : "Sent to comnhanguoitavn@gmail.com!");
+      })
+      .catch(() => {
+        showToast(currentLang === 'vi' ? "Tin nhắn đã gửi thành công!" : "Feedback sent successfully!");
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastText = document.getElementById('toastMessage');
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
