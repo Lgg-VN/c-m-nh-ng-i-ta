@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cơm Nhà Người Ta — Authentic Saigon Family Meal Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: {
+              50: '#FDF7F4',
+              100: '#FCECE6',
+              200: '#F7D6C8',
+              500: '#C05621',
+              600: '#A84317',
+              700: '#8A320F',
+              800: '#6C250B',
+            },
+            jungle: {
+              50: '#F3F8F2',
+              100: '#E4F0E2',
+              600: '#2D5A27',
+              700: '#22461E',
+              800: '#173114',
+            },
+            bamboo: {
+              50: '#FDFBF7',
+              100: '#FAF6ED',
+              200: '#F4ECE0',
+              300: '#E8DCB8',
+              800: '#3D352E',
+              900: '#26211C',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF6ED;
+      color: #26211C;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-editorial {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F4ECE0;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #C05621;
+      border-radius: 9999px;
+    }
+    .glass-nav {
+      background: rgba(250, 246, 237, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .subtle-border {
+      border-color: rgba(192, 86, 33, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-bamboo-100 text-bamboo-900 antialiased selection:bg-terracotta-500 selection:text-white">
+
+  <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-bamboo-200/80 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-full bg-terracotta-500 flex items-center justify-center text-white shadow-md shadow-terracotta-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="soup" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="font-editorial text-2xl font-bold tracking-tight text-terracotta-700 block leading-none">Cơm Nhà Người Ta</span>
+            <span class="text-[11px] uppercase tracking-wider text-jungle-700 font-semibold mt-1 block">Saigon Family Meal Experience</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#experience" class="text-sm font-medium text-bamboo-800 hover:text-terracotta-600 transition-colors">The Experience</a>
+          <a href="#menu" class="text-sm font-medium text-bamboo-800 hover:text-terracotta-600 transition-colors">Daily Mâm Cơm</a>
+          <a href="#hosts" class="text-sm font-medium text-bamboo-800 hover:text-terracotta-600 transition-colors">Our Family</a>
+          <a href="#reviews" class="text-sm font-medium text-bamboo-800 hover:text-terracotta-600 transition-colors">Guest Journal</a>
+          <a href="#faq" class="text-sm font-medium text-bamboo-800 hover:text-terracotta-600 transition-colors">FAQ</a>
+        </nav>
+
+        <!-- Header Actions: Currency & CTA -->
+        <div class="hidden sm:flex items-center gap-4">
+          <!-- Currency Selector -->
+          <div class="relative inline-block text-left">
+            <div class="flex items-center bg-white/80 rounded-full border border-bamboo-200 px-3 py-1.5 shadow-sm text-xs font-semibold text-bamboo-800">
+              <i data-lucide="coins" class="w-3.5 h-3.5 mr-1.5 text-terracotta-600"></i>
+              <select id="currencySelector" onchange="updateCurrency(this.value)" class="bg-transparent focus:outline-none cursor-pointer pr-1">
+                <option value="USD">USD ($)</option>
+                <option value="VND">VND (₫)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="openBookingModal()" class="inline-flex items-center gap-2 bg-terracotta-600 hover:bg-terracotta-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-terracotta-600/25 transition-all hover:shadow-lg active:scale-95">
+            <span>Reserve a Seat</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <div class="flex items-center gap-2 md:hidden">
+          <button onclick="toggleMobileNav()" class="p-2 text-bamboo-800 hover:text-terracotta-600 rounded-lg focus:outline-none" aria-label="Toggle navigation">
+            <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="hidden md:hidden bg-bamboo-50 border-b border-bamboo-200 px-5 pt-3 pb-6 space-y-4">
+      <div class="flex flex-col space-y-3 font-medium text-bamboo-900">
+        <a href="#experience" onclick="toggleMobileNav()" class="py-2 border-b border-bamboo-200/50">The 5-Step Experience</a>
+        <a href="#menu" onclick="toggleMobileNav()" class="py-2 border-b border-bamboo-200/50">Daily Mâm Cơm & Dietary</a>
+        <a href="#hosts" onclick="toggleMobileNav()" class="py-2 border-b border-bamboo-200/50">Our Saigon Family</a>
+        <a href="#reviews" onclick="toggleMobileNav()" class="py-2 border-b border-bamboo-200/50">Guest Journal & Reviews</a>
+        <a href="#faq" onclick="toggleMobileNav()" class="py-2">Practical Info & FAQ</a>
+      </div>
+      <div class="pt-2 flex flex-col gap-3">
+        <div class="flex items-center justify-between py-2 border-t border-bamboo-200/50">
+          <span class="text-xs font-semibold text-bamboo-800">Select Currency:</span>
+          <select id="mobileCurrencySelector" onchange="updateCurrency(this.value)" class="bg-white rounded-lg border border-bamboo-200 px-3 py-1 text-xs font-semibold text-bamboo-900">
+            <option value="USD">USD ($)</option>
+            <option value="VND">VND (₫)</option>
+            <option value="EUR">EUR (€)</option>
+          </select>
+        </div>
+        <button onclick="toggleMobileNav(); openBookingModal();" class="w-full bg-terracotta-600 text-white py-3 rounded-xl font-semibold text-center shadow-md">
+          Reserve Your Seat (<span class="display-price-nav">$48</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 lg:py-24">
+      <!-- Decorative Backdrop Texture -->
+      <div class="absolute inset-0 z-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#C05621 0.75px, transparent 0.75px), radial-gradient(#C05621 0.75px, #FAF6ED 0.75px); background-size: 30px 30px; background-position: 0 0, 15px 15px;"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Hero Narrative -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta-100 text-terracotta-700 text-xs font-semibold tracking-wide uppercase shadow-sm">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta-500"></i>
+              <span>Intimate Cultural Immersion • Saigon, Vietnam</span>
+            </div>
+
+            <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bamboo-900 leading-[1.15]">
+              Sit at a Real <br>
+              <span class="text-terracotta-600 italic">Saigon Family Table</span>.
+            </h1>
+
+            <p class="text-base sm:text-lg text-bamboo-800/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              Skip the commercial restaurants. Step into our family home in District 3. Explore the buzzing morning wet market, cook authentic generational recipes side-by-side, and share candid stories over a warm, communal <span class="font-semibold text-jungle-700">Mâm Cơm</span>.
+            </p>
+
+            <!-- Trust Badges Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-bamboo-200">
+                <i data-lucide="users" class="w-5 h-5 text-terracotta-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-bamboo-800">Max 8 Guests</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-bamboo-200">
+                <i data-lucide="flame" class="w-5 h-5 text-terracotta-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-bamboo-800">100% Home Cooked</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-bamboo-200">
+                <i data-lucide="heart-handshake" class="w-5 h-5 text-jungle-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-bamboo-800">Dietary Friendly</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-bamboo-200">
+                <i data-lucide="message-circle" class="w-5 h-5 text-jungle-600 shrink-0"></i>
+                <span class="text-xs font-semibold text-bamboo-800">English Guided</span>
+              </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#experience" class="inline-flex items-center gap-2 text-sm font-semibold text-bamboo-800 hover:text-terracotta-600 underline underline-offset-4">
+                <span>See the 5-Step Journey</span>
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+              </a>
+              <span class="text-bamboo-300">•</span>
+              <div class="flex items-center text-xs text-bamboo-800">
+                <span class="text-amber-500 flex mr-1">★★★★★</span>
+                <span class="font-bold">5.0</span>&nbsp;(140+ international travelers)
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Booking Card -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-bamboo-900/5 border border-bamboo-200 relative">
+              <div class="absolute -top-3.5 right-6 bg-jungle-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Available Daily
+              </div>
+
+              <div class="space-y-1 mb-5">
+                <h2 class="font-editorial text-2xl font-bold text-bamboo-900">Reserve Your Spot</h2>
+                <p class="text-xs text-bamboo-800/80">Small batches only. Early reservation recommended.</p>
+              </div>
+
+              <!-- Quick form -->
+              <div class="space-y-4">
+                <!-- Session Selector -->
+                <div>
+                  <label class="block text-xs font-bold text-bamboo-800 uppercase tracking-wider mb-1.5">Select Experience Session</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="setHeroSession('morning')" id="heroSessionMorning" class="session-btn p-3 rounded-xl border border-terracotta-500 bg-terracotta-50 text-left transition-all">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-terracotta-700">Morning Session</span>
+                        <i data-lucide="sun" class="w-3.5 h-3.5 text-terracotta-600"></i>
+                      </div>
+                      <p class="text-[11px] text-bamboo-800">08:30 - 13:00</p>
+                      <span class="text-[10px] text-jungle-600 font-semibold">Wet Market + Lunch</span>
+                    </button>
+
+                    <button type="button" onclick="setHeroSession('twilight')" id="heroSessionTwilight" class="session-btn p-3 rounded-xl border border-bamboo-200 bg-white hover:border-bamboo-300 text-left transition-all">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-bamboo-800">Twilight Session</span>
+                        <i data-lucide="sunset" class="w-3.5 h-3.5 text-amber-600"></i>
+                      </div>
+                      <p class="text-[11px] text-bamboo-800">15:30 - 20:00</p>
+                      <span class="text-[10px] text-terracotta-600 font-semibold">Evening Feast + Tea</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Date Picker & Guest Counter -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-bamboo-800 uppercase tracking-wider mb-1.5">Date</label>
+                    <div class="relative">
+                      <input type="date" id="heroDateInput" class="w-full bg-bamboo-50/80 border border-bamboo-200 rounded-xl px-3 py-2.5 text-xs text-bamboo-900 font-semibold focus:outline-none focus:border-terracotta-500">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-bamboo-800 uppercase tracking-wider mb-1.5">Guests</label>
+                    <div class="flex items-center justify-between bg-bamboo-50/80 border border-bamboo-200 rounded-xl px-3 py-1.5">
+                      <button type="button" onclick="adjustHeroGuests(-1)" class="w-7 h-7 rounded-lg bg-white border border-bamboo-200 flex items-center justify-center text-bamboo-800 font-bold hover:bg-bamboo-100">-</button>
+                      <span id="heroGuestCount" class="text-xs font-bold text-bamboo-900">2 Guests</span>
+                      <button type="button" onclick="adjustHeroGuests(1)" class="w-7 h-7 rounded-lg bg-white border border-bamboo-200 flex items-center justify-center text-bamboo-800 font-bold hover:bg-bamboo-100">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Price display banner -->
+                <div class="p-3.5 rounded-xl bg-bamboo-100/70 border border-bamboo-200 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-bamboo-800">Estimated Total:</span>
+                    <p class="text-lg font-bold text-terracotta-700" id="heroCalculatedTotal">$96 USD</p>
+                  </div>
+                  <span class="text-[11px] text-jungle-700 font-medium">All inclusive (Food, Tea, Market)</span>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button" onclick="proceedToBookingFromHero()" class="w-full bg-terracotta-600 hover:bg-terracotta-700 text-white py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md shadow-terracotta-600/30 transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+                  <span>Continue to Reservation</span>
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-bamboo-100 flex items-center justify-center gap-3 text-[11px] text-bamboo-800/80">
+                <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-jungle-600"></i> Free cancel up to 24h</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="badge-percent" class="w-3.5 h-3.5 text-terracotta-600"></i> No hidden fees</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-white border-y border-bamboo-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-jungle-50 text-jungle-700 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span>The 5-Step Intimate Experience</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-bamboo-900">
+            More Than a Cooking Class. <br>
+            <span class="italic text-terracotta-600">A Day in a Saigon Home.</span>
+          </h2>
+          <p class="text-base text-bamboo-800 leading-relaxed">
+            From the bustling narrow aisles of the morning wet market to our peaceful family courtyard, we take you by the hand through the authentic rhythm of southern Vietnamese domestic life.
+          </p>
+        </div>
+
+        <!-- 5 Steps Horizontal / Stacked Timeline -->
+        <div class="space-y-12">
+          
+          <!-- Step 1 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-bamboo-50 rounded-3xl p-6 sm:p-8 border border-bamboo-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-5 order-2 lg:order-1 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-terracotta-600 text-white font-bold flex items-center justify-center text-sm shadow">1</span>
+                <span class="text-xs uppercase font-bold text-terracotta-600 tracking-wider">Step One • ~60 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-bamboo-900">Local Wet Market Discovery</h3>
+              <p class="text-sm text-bamboo-800 leading-relaxed">
+                We meet at sunrise or afternoon glow at Chợ Vườn Chuối, a traditional neighborhood wet market untouched by mass tourism. Walk through aisles of vibrant herbs like *kinh giới*, *tía tô*, and fresh morning catch.
+              </p>
+              <ul class="space-y-2 text-xs text-bamboo-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Learn to select sweet shallots, garlic, and ripe lemongrass</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Understand market bargaining customs with respected local vendors</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Taste fresh warm soy pudding or coconut wafers along the way</li>
+              </ul>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group">
+                <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Vietnamese wet market with vibrant fresh greens" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.src='https://placehold.co/800x450/FAF6ED/C05621?text=Local+Wet+Market+Tour'">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium">
+                  Chợ Vườn Chuối, District 3
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-bamboo-50 rounded-3xl p-6 sm:p-8 border border-bamboo-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-7">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Hands-on home cooking inside a Vietnamese family kitchen" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.src='https://placehold.co/800x450/FAF6ED/C05621?text=Family+Kitchen+Cooking'">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium">
+                  Our Home Kitchen Hearth
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-jungle-600 text-white font-bold flex items-center justify-center text-sm shadow">2</span>
+                <span class="text-xs uppercase font-bold text-jungle-700 tracking-wider">Step Two • ~90 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-bamboo-900">Hands-on Home Cooking</h3>
+              <p class="text-sm text-bamboo-800 leading-relaxed">
+                Stroll together down the quiet alley to our family townhouse. Put on your apron, pour a refreshing glass of calamansi cooler, and prepare 4 traditional dishes side-by-side with our family cooks.
+              </p>
+              <ul class="space-y-2 text-xs text-bamboo-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Master the art of claypot caramelization (*Kho Tộ*)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Balance the holy quintet of flavors: sweet, salty, sour, bitter, umami</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Hand-pound herbs in stone mortars with family guidance</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-bamboo-50 rounded-3xl p-6 sm:p-8 border border-bamboo-200 hover:shadow-lg transition-shadow">
+            <div class="lg:col-span-5 order-2 lg:order-1 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-terracotta-600 text-white font-bold flex items-center justify-center text-sm shadow">3</span>
+                <span class="text-xs uppercase font-bold text-terracotta-600 tracking-wider">Step Three • ~75 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-bamboo-900">Dine, Connect & "Mời Cơm"</h3>
+              <p class="text-sm text-bamboo-800 leading-relaxed">
+                Gather around the iconic round family tray (*Mâm Cơm*). In Vietnam, eating is never solitary; it is an act of union. Experience the heartwarming custom of *Mời Cơm*—inviting elders and friends to start the meal.
+              </p>
+              <ul class="space-y-2 text-xs text-bamboo-800 font-medium">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Learn communal dining etiquette and chopstick courtesy</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Heartfelt conversations about Saigon history, family values, and everyday life</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-jungle-600"></i> Generous refills of piping hot jasmine rice straight from the pot</li>
+              </ul>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-video sm:aspect-[16/9] relative group">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Communal Vietnamese family meal with rich savory dishes" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.src='https://placehold.co/800x450/FAF6ED/C05621?text=Communal+Family+Dining'">
+                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium">
+                  The Sacred "Mâm Cơm"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 & 5 Combined in dual aesthetic cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Step 4 -->
+            <div class="bg-bamboo-50 rounded-3xl p-6 sm:p-8 border border-bamboo-200 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-jungle-600 text-white font-bold flex items-center justify-center text-sm shadow">4</span>
+                <span class="text-xs uppercase font-bold text-jungle-700 tracking-wider">Step Four • ~45 Minutes</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-bamboo-900">Tea, Seasonal Treats & Daily Customs</h3>
+              <p class="text-sm text-bamboo-800 leading-relaxed">
+                After the feast, we move to the living room or open balcony. Savor artisanal Vietnamese green tea scented with lotus petals, peeled seasonal fruits (sweet rambutan, pomelo, dragonfruit), and traditional mung bean cakes.
+              </p>
+              <div class="p-3 bg-white/80 rounded-xl border border-bamboo-200/80 text-xs text-bamboo-800 italic">
+                "The table cleanses, but the tea deepens the friendship. Ask us anything about life in Vietnam."
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="bg-terracotta-50 rounded-3xl p-6 sm:p-8 border border-terracotta-200 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-terracotta-600 text-white font-bold flex items-center justify-center text-sm shadow">5</span>
+                <span class="text-xs uppercase font-bold text-terracotta-700 tracking-wider">Step Five • Farewell Keepsakes</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-bamboo-900">Memories, Digital Photos & Recipe Kit</h3>
+              <p class="text-sm text-bamboo-800 leading-relaxed">
+                You won't leave empty-handed. Receive a handcrafted Vietnamese fabric tote or spice tin, plus same-day digital access to high-res candid photos captured during your cooking session and printable family recipe cards.
+              </p>
+              <div class="p-3 bg-white/90 rounded-xl border border-terracotta-200 text-xs text-terracotta-800 font-semibold flex items-center gap-2">
+                <i data-lucide="cloud-download" class="w-4 h-4 text-terracotta-600"></i>
+                Private online gallery access sent directly to your email
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="menu" class="py-20 bg-bamboo-100/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-terracotta-100 text-terracotta-700 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="utensils" class="w-3.5 h-3.5"></i>
+            <span>The Anatomy of a Home Meal</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-bamboo-900">
+            The Balance of "Mâm Cơm"
+          </h2>
+          <p class="text-sm sm:text-base text-bamboo-800">
+            Unlike Western multi-course dining, a Vietnamese family meal is enjoyed simultaneously. Every dish complements another: savory cuts the rice, soup clears the palate, and crisp greens ground the feast.
+          </p>
+
+          <!-- Interactive Dietary Filter Tabs -->
+          <div class="flex flex-wrap items-center justify-center gap-2 pt-6">
+            <button onclick="switchMenuTab('classic')" id="tabBtnClassic" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-terracotta-600 text-white">
+              Classic Southern Home
+            </button>
+            <button onclick="switchMenuTab('pescatarian')" id="tabBtnPescatarian" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-bamboo-800 hover:bg-bamboo-200/50">
+              Pescatarian & Seafood
+            </button>
+            <button onclick="switchMenuTab('vegan')" id="tabBtnVegan" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-bamboo-800 hover:bg-bamboo-200/50">
+              Plant-Based & Vegan (*Chay*)
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Pillars Grid (Dynamic based on selected tab) -->
+        <div id="menuCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Inclusivity & Food Safety Notice -->
+        <div class="mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-bamboo-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-jungle-50 text-jungle-600 flex items-center justify-center shrink-0">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-editorial text-lg font-bold text-bamboo-900">Allergies & Clean Drinking Water Guarantee</h4>
+              <p class="text-xs text-bamboo-800/90 mt-1 max-w-2xl leading-relaxed">
+                We strictly use triple-filtered RO water for all cooking, drinking, and washing. Whether you are strictly gluten-free, peanut-allergic, shellfish-free, or religious vegetarian, our family adapts individual clay pots without cross-contamination.
+              </p>
+            </div>
+          </div>
+          <button onclick="openBookingModal()" class="shrink-0 bg-jungle-600 hover:bg-jungle-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all">
+            Specify Dietary Needs
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="hosts" class="py-20 bg-white border-y border-bamboo-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border-4 border-bamboo-100">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
+                     alt="Host Cô Hương and family welcoming guests with smiles" 
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://placehold.co/600x750/FAF6ED/C05621?text=Auntie+Huong+%26+Minh'">
+              </div>
+              <!-- Floating Host Quote Badge -->
+              <div class="absolute -bottom-6 -right-4 sm:bottom-6 sm:-right-6 bg-bamboo-900 text-white p-4 rounded-2xl shadow-xl max-w-[240px]">
+                <p class="text-xs italic leading-snug">"In Saigon, you are only a stranger until you accept a warm bowl of rice."</p>
+                <span class="block text-[10px] font-bold text-terracotta-300 mt-2 uppercase tracking-wider">— Cô Hương, Head Host</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-terracotta-100 text-terracotta-700 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="home" class="w-3.5 h-3.5"></i>
+              <span>Our Saigon Family</span>
+            </div>
+
+            <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-bamboo-900">
+              Why We Opened Our <br>
+              <span class="italic text-terracotta-600">Family Kitchen to the World</span>
+            </h2>
+
+            <p class="text-base text-bamboo-800 leading-relaxed">
+              We are Cô Hương (Auntie Huong) and nephew Minh. Our family has inhabited the same leafy hem (alley) in District 3 for over forty years. Growing up, our dinner table was always filled with boisterous laughter, the clinking of porcelain bowls, and the irresistible scent of black pepper caramelizing over charcoal.
+            </p>
+
+            <p class="text-sm text-bamboo-800/90 leading-relaxed">
+              When international visitors come to Saigon, they often eat at polished tourist restaurants where the soul of domestic Vietnamese seasoning is tempered. We started <strong class="text-bamboo-900">Cơm Nhà Người Ta</strong> ("Eating at Someone Else's Home") because the deepest cultural revelations happen when you pull up a wooden stool, ask questions without hesitation, and share food cooked from the heart.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-bamboo-200">
+              <div>
+                <span class="block text-2xl font-bold text-terracotta-600 font-editorial">40+</span>
+                <span class="text-xs text-bamboo-800">Years in the neighborhood</span>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold text-jungle-600 font-editorial">100%</span>
+                <span class="text-xs text-bamboo-800">Generational recipes</span>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold text-bamboo-900 font-editorial">8 Max</span>
+                <span class="text-xs text-bamboo-800">Intimate guest limit</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="booking-section" class="py-20 bg-bamboo-50 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-jungle-50 text-jungle-700 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+            <span>Interactive Reservation Portal</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-bamboo-900">
+            Book Your Family Table Experience
+          </h2>
+          <p class="text-sm text-bamboo-800">
+            Choose your preferred session and date. Seats are limited to 8 guests per session to maintain an intimate family atmosphere.
+          </p>
+        </div>
+
+        <!-- Full Booking Form Card -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-bamboo-200">
+          <form id="inlineBookingForm" onsubmit="handleFormSubmission(event)" class="space-y-8">
+            
+            <!-- Step 1: Session Selection -->
+            <div>
+              <label class="block text-sm font-bold text-bamboo-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-terracotta-600 text-white text-xs flex items-center justify-center">1</span>
+                <span>Select Your Preferred Time</span>
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <label class="relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-terracotta-500 bg-terracotta-50/50" id="labelMorning">
+                  <input type="radio" name="bookingSession" value="morning" checked onchange="handleSessionChange('morning')" class="sr-only">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-sm text-bamboo-900">Morning Market + Lunch Session</span>
+                    <span class="text-xs bg-terracotta-100 text-terracotta-800 font-semibold px-2.5 py-0.5 rounded-full">08:30 - 13:00</span>
+                  </div>
+                  <p class="text-xs text-bamboo-800 mb-2">Cool morning breeze, bustling peak wet market action, live butchery & herb tastings, lunch feast.</p>
+                  <span class="text-xs text-jungle-700 font-semibold mt-auto flex items-center gap-1">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i> Best for early risers & market photography
+                  </span>
+                </label>
+
+                <label class="relative flex flex-col p-4 rounded-2xl border-2 cursor-pointer transition-all border-bamboo-200 bg-white hover:border-bamboo-300" id="labelTwilight">
+                  <input type="radio" name="bookingSession" value="twilight" onchange="handleSessionChange('twilight')" class="sr-only">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-sm text-bamboo-900">Twilight Market + Dinner Session</span>
+                    <span class="text-xs bg-bamboo-200 text-bamboo-900 font-semibold px-2.5 py-0.5 rounded-full">15:30 - 20:00</span>
+                  </div>
+                  <p class="text-xs text-bamboo-800 mb-2">Afternoon market life, sunset golden hour cooking, cozy warm-lit family dinner & evening tea.</p>
+                  <span class="text-xs text-terracotta-600 font-semibold mt-auto flex items-center gap-1">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i> Best for relaxed evenings & sunset vibe
+                  </span>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Step 2: Date & Guest Count -->
+            <div>
+              <label class="block text-sm font-bold text-bamboo-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-terracotta-600 text-white text-xs flex items-center justify-center">2</span>
+                <span>Date & Party Size</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1.5">Choose Date</label>
+                  <input type="date" required id="bookingDateInput" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-4 py-3 text-sm text-bamboo-900 focus:outline-none focus:border-terracotta-500 font-medium">
+                  <span class="text-[11px] text-bamboo-800/80 mt-1 block">Tours operate 7 days a week</span>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1.5">Number of Guests (Max 8)</label>
+                  <div class="flex items-center justify-between bg-bamboo-50 border border-bamboo-300 rounded-xl p-1.5">
+                    <button type="button" onclick="changeGuestCount(-1)" class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-bamboo-900 font-bold hover:bg-bamboo-100 active:scale-95 transition-transform">-</button>
+                    <div class="text-center">
+                      <span id="bookingGuestNumber" class="text-base font-bold text-bamboo-900">2 Guests</span>
+                      <span class="block text-[10px] text-jungle-600 font-semibold" id="seatAvailabilityText">6 seats remaining</span>
+                    </div>
+                    <button type="button" onclick="changeGuestCount(1)" class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-bamboo-900 font-bold hover:bg-bamboo-100 active:scale-95 transition-transform">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Traveler Information & Dietary Preferences -->
+            <div>
+              <label class="block text-sm font-bold text-bamboo-900 mb-3 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-terracotta-600 text-white text-xs flex items-center justify-center">3</span>
+                <span>Contact & Dietary Preferences</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1">Full Name</label>
+                  <input type="text" required placeholder="e.g. Sarah Jenkins" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-4 py-2.5 text-sm text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1">Email Address (for confirmation & photos)</label>
+                  <input type="email" required placeholder="sarah.jenkins@example.com" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-4 py-2.5 text-sm text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1">WhatsApp / Phone Number</label>
+                  <input type="tel" required placeholder="+1 555 123 4567" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-4 py-2.5 text-sm text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-bamboo-800 mb-1">Hotel in Saigon (Optional for navigation assistance)</label>
+                  <input type="text" placeholder="e.g. Silverland Sakyo, District 1" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-4 py-2.5 text-sm text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+                </div>
+              </div>
+
+              <!-- Dietary checkmarks -->
+              <div class="bg-bamboo-50 rounded-2xl p-4 border border-bamboo-200">
+                <span class="block text-xs font-bold text-bamboo-900 mb-2">Special Dietary Requirements (Optional)</span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <label class="flex items-center gap-2 text-xs text-bamboo-800 cursor-pointer">
+                    <input type="checkbox" class="rounded text-terracotta-600 focus:ring-0">
+                    <span>Vegetarian / Vegan</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-bamboo-800 cursor-pointer">
+                    <input type="checkbox" class="rounded text-terracotta-600 focus:ring-0">
+                    <span>Gluten-Free</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-bamboo-800 cursor-pointer">
+                    <input type="checkbox" class="rounded text-terracotta-600 focus:ring-0">
+                    <span>Shellfish Allergy</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-bamboo-800 cursor-pointer">
+                    <input type="checkbox" class="rounded text-terracotta-600 focus:ring-0">
+                    <span>Nut / Peanut Free</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Breakdown Summary -->
+            <div class="border-t border-bamboo-200 pt-6">
+              <div class="bg-bamboo-100 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <div class="text-xs text-bamboo-800">
+                    <span id="pricePerPersonLabel">$48 USD</span> × <span id="summaryGuestCount">2</span> Guests
+                  </div>
+                  <div class="text-2xl font-bold font-editorial text-terracotta-700" id="summaryGrandTotal">
+                    $96 USD
+                  </div>
+                  <span class="text-[11px] text-jungle-700 font-medium">All taxes, ingredients, market snacks & photos included.</span>
+                </div>
+
+                <div class="w-full sm:w-auto">
+                  <button type="submit" class="w-full sm:w-auto bg-terracotta-600 hover:bg-terracotta-700 text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-lg shadow-terracotta-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                    <span>Confirm & Complete Reservation</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="reviews" class="py-20 bg-white border-b border-bamboo-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-terracotta-100 text-terracotta-700 text-xs font-bold uppercase tracking-wider mb-3">
+              <i data-lucide="message-square-quote" class="w-3.5 h-3.5"></i>
+              <span>Traveler Love & Honest Words</span>
+            </div>
+            <h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-bamboo-900">
+              Candid Voices From Our Table
+            </h2>
+          </div>
+
+          <!-- Rating summary badge -->
+          <div class="flex items-center gap-4 bg-bamboo-50 px-5 py-3 rounded-2xl border border-bamboo-200">
+            <div class="text-3xl font-bold font-editorial text-terracotta-600">5.0</div>
+            <div class="text-xs">
+              <div class="text-amber-500 font-bold">★★★★★</div>
+              <span class="text-bamboo-800 font-semibold">142 Verified Reviews on Google & TripAdvisor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          
+          <!-- Review 1 -->
+          <div class="bg-bamboo-50/70 p-6 rounded-3xl border border-bamboo-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-bamboo-800">2 weeks ago</span>
+              </div>
+              <p class="text-xs sm:text-sm text-bamboo-900 leading-relaxed italic">
+                "By far the single best thing my husband and I did during our two weeks in Vietnam. The morning market in District 3 felt so intimate. Cô Huong showed us how to pick the freshest herbs, and cooking the claypot fish was a culinary revelation!"
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-bamboo-200/60 mt-4">
+              <div class="w-10 h-10 rounded-full bg-terracotta-200 text-terracotta-800 flex items-center justify-center font-bold text-xs">
+                EM
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-bamboo-900">Emma & Marcus Reid</h5>
+                <span class="text-[11px] text-bamboo-800">Melbourne, Australia 🇦🇺</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="bg-bamboo-50/70 p-6 rounded-3xl border border-bamboo-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-bamboo-800">1 month ago</span>
+              </div>
+              <p class="text-xs sm:text-sm text-bamboo-900 leading-relaxed italic">
+                "I was nervous as a strict vegan traveling in Southeast Asia. Minh and his auntie prepared artisanal mushroom reductions and made sure all fish sauce was kept entirely off our table. We felt like cherished family, not customers."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-bamboo-200/60 mt-4">
+              <div class="w-10 h-10 rounded-full bg-jungle-100 text-jungle-800 flex items-center justify-center font-bold text-xs">
+                CL
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-bamboo-900">Claire Laurent</h5>
+                <span class="text-[11px] text-bamboo-800">Lyon, France 🇫🇷</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="bg-bamboo-50/70 p-6 rounded-3xl border border-bamboo-200 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                <span class="text-[11px] text-bamboo-800">Last month</span>
+              </div>
+              <p class="text-xs sm:text-sm text-bamboo-900 leading-relaxed italic">
+                "The conversation over lotus tea after the meal was unforgettable. We spoke openly about postwar generations, modern youth in Saigon, and family traditions. And the high-res candid photos they emailed afterwards were stunning!"
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-bamboo-200/60 mt-4">
+              <div class="w-10 h-10 rounded-full bg-terracotta-100 text-terracotta-700 flex items-center justify-center font-bold text-xs">
+                DT
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-bamboo-900">David Tan & Jennifer</h5>
+                <span class="text-[11px] text-bamboo-800">San Francisco, USA 🇺🇸</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Photo Log Showcase -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-editorial text-xl font-bold text-bamboo-900">Candid Moments Captured at Our Home</h4>
+            <span class="text-xs text-terracotta-600 font-semibold">Updated weekly</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="aspect-square rounded-2xl overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Guests cooking together" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x400/FAF6ED/C05621?text=Cooking+Moments'">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Fresh herbs at the market" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x400/FAF6ED/C05621?text=Fresh+Greens'">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Warm dining table laughter" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x400/FAF6ED/C05621?text=Family+Table'">
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Vietnamese tea and dessert" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x400/FAF6ED/C05621?text=Lotus+Tea'">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-bamboo-100/50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-jungle-50 text-jungle-700 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+            <span>Got Questions?</span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-bamboo-900">
+            Practical Information & FAQs
+          </h2>
+          <p class="text-sm text-bamboo-800">
+            Everything you need to know before coming to our family table in Saigon.
+          </p>
+        </div>
+
+        <div class="space-y-4" id="faqAccordion">
+          
+          <!-- FAQ 1 -->
+          <div class="bg-white rounded-2xl border border-bamboo-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-bamboo-900 focus:outline-none">
+              <span>Where exactly do we meet in Saigon?</span>
+              <i data-lucide="chevron-down" id="faqIcon-1" class="w-5 h-5 text-terracotta-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-bamboo-800 leading-relaxed border-t border-bamboo-100 pt-3">
+              We meet right at the entrance of <strong>Chợ Vườn Chuối</strong> (Vườn Chuối Market, Ward 4, District 3). It is easily accessible via a 5 to 8-minute Grab ride from central District 1 hotels (Ben Thanh / Opera House area). Upon booking, we send exact GPS Google Maps pins and a Vietnamese audio note you can show your Grab driver.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-white rounded-2xl border border-bamboo-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-bamboo-900 focus:outline-none">
+              <span>What should I wear for the wet market and home visit?</span>
+              <i data-lucide="chevron-down" id="faqIcon-2" class="w-5 h-5 text-terracotta-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-bamboo-800 leading-relaxed border-t border-bamboo-100 pt-3">
+              Dress comfortably for warm tropical weather! Light, breathable cotton or linen is ideal. We strongly recommend closed-toe flat shoes or sturdy sneakers with rubber soles, as market floors can sometimes be wet from melted ice and fresh produce washing. When entering our home, shoes are taken off as per Vietnamese tradition (we provide clean indoor slippers).
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-white rounded-2xl border border-bamboo-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-bamboo-900 focus:outline-none">
+              <span>How clean is the food and water?</span>
+              <i data-lucide="chevron-down" id="faqIcon-3" class="w-5 h-5 text-terracotta-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-bamboo-800 leading-relaxed border-t border-bamboo-100 pt-3">
+              We hold the highest hygiene standards because our family eats the very same meal with you! We only use pure RO filtered water for all food preparation, cooking stocks, and ice. All greens and fresh herbs undergo thorough multi-stage washing with ozone rinses.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-white rounded-2xl border border-bamboo-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-bamboo-900 focus:outline-none">
+              <span>What is the cancellation policy? What if it rains?</span>
+              <i data-lucide="chevron-down" id="faqIcon-4" class="w-5 h-5 text-terracotta-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-bamboo-800 leading-relaxed border-t border-bamboo-100 pt-3">
+              You can cancel or reschedule with 100% refund up to 24 hours prior to the experience start time. If it rains (typical for Saigon's afternoon monsoon season), our tours still run seamlessly! Traditional wet markets are fully sheltered under covered awnings, and our home is cozy, air-conditioned, and dry. We also provide umbrellas.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="bg-white rounded-2xl border border-bamboo-200 overflow-hidden transition-all">
+            <button onclick="toggleFaq(5)" class="w-full text-left px-6 py-4.5 flex items-center justify-between text-sm sm:text-base font-bold text-bamboo-900 focus:outline-none">
+              <span>Can children participate in this experience?</span>
+              <i data-lucide="chevron-down" id="faqIcon-5" class="w-5 h-5 text-terracotta-600 transition-transform"></i>
+            </button>
+            <div id="faqAnswer-5" class="hidden px-6 pb-5 text-xs sm:text-sm text-bamboo-800 leading-relaxed border-t border-bamboo-100 pt-3">
+              Absolutely! Children aged 6 and above love rolling herbs, shaping rice, and discovering curious tropical fruits like rambutan and dragonfruit. Children under 12 receive a 30% discount automatically applied at checkout.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 bg-white border-b border-bamboo-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-terracotta-50 rounded-3xl p-8 sm:p-12 border border-terracotta-200 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="space-y-3 max-w-xl text-center lg:text-left">
+            <span class="text-xs uppercase font-bold text-terracotta-600 tracking-wider">Heart of Saigon • District 3</span>
+            <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-bamboo-900">
+              Escape the tourist traps. Join us in our authentic alleyway haven.
+            </h3>
+            <p class="text-sm text-bamboo-800 leading-relaxed">
+              District 3 is celebrated as one of the most culturally authentic residential neighborhoods in Saigon, renowned for French colonial architecture, lush tamarind trees, and hidden culinary treasures.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white text-bamboo-900 border border-bamboo-300 hover:border-terracotta-500 px-6 py-3.5 rounded-xl text-xs font-bold shadow-sm transition-all">
+              <i data-lucide="map-pin" class="w-4 h-4 text-terracotta-600"></i>
+              <span>Open in Google Maps</span>
+            </a>
+            <button onclick="openBookingModal()" class="inline-flex items-center justify-center gap-2 bg-terracotta-600 hover:bg-terracotta-700 text-white px-6 py-3.5 rounded-xl text-xs font-bold shadow-md shadow-terracotta-600/25 transition-all">
+              <span>Check Available Dates</span>
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-bamboo-900 text-bamboo-100 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-bamboo-800">
+        
+        <!-- Brand & Description -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-terracotta-500 flex items-center justify-center text-white">
+              <i data-lucide="soup" class="w-5 h-5"></i>
+            </div>
+            <span class="font-editorial text-2xl font-bold tracking-tight text-white">Cơm Nhà Người Ta</span>
+          </div>
+          <p class="text-xs text-bamboo-300 max-w-sm leading-relaxed">
+            An intimate cultural tourism experience in Saigon, Vietnam. Connecting travelers with authentic Vietnamese family meals, traditional wet markets, and heartfelt generational hospitality.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <button onclick="copyContact('whatsapp')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-900/60 text-emerald-300 border border-emerald-700/50 text-xs font-medium hover:bg-emerald-800/80 transition-colors">
+              <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+              <span>WhatsApp: +84 908 123 456</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-terracotta-400 tracking-wider">The Experience</h4>
+          <ul class="space-y-2 text-xs text-bamboo-300">
+            <li><a href="#experience" class="hover:text-white transition-colors">Wet Market Walk</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors">Home Hearth Cooking</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors">Communal Dining</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors">Tea & Sweet Treats</a></li>
+            <li><a href="#experience" class="hover:text-white transition-colors">Recipe Kit Keepsakes</a></li>
+          </ul>
+        </div>
+
+        <!-- Practical Information -->
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-terracotta-400 tracking-wider">Information</h4>
+          <ul class="space-y-2 text-xs text-bamboo-300">
+            <li><a href="#menu" class="hover:text-white transition-colors">Dietary Adaptations</a></li>
+            <li><a href="#hosts" class="hover:text-white transition-colors">About Our Family</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">Hygiene & Safety</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">Meeting Point Info</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">Cancellation Terms</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter & Operating Hours -->
+        <div class="space-y-3">
+          <h4 class="text-xs uppercase font-bold text-terracotta-400 tracking-wider">Saigon Hearth Letter</h4>
+          <p class="text-xs text-bamboo-300 leading-relaxed">
+            Receive seasonal home recipes and Saigon alleyway dining secrets.
+          </p>
+          <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+            <div class="flex">
+              <input type="email" required placeholder="Your email..." class="bg-bamboo-800 text-white placeholder-bamboo-400 text-xs px-3 py-2 rounded-l-lg w-full focus:outline-none focus:ring-1 focus:ring-terracotta-500">
+              <button type="submit" class="bg-terracotta-600 hover:bg-terracotta-700 text-white px-3 py-2 rounded-r-lg text-xs font-bold shrink-0">
+                Join
+              </button>
+            </div>
+          </form>
+          <span class="block text-[10px] text-bamboo-400">Tours run daily: 08:30 & 15:30</span>
+        </div>
+
+      </div>
+
+      <!-- Copyright and Credits -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-bamboo-400 gap-4">
+        <p>© 2026 Cơm Nhà Người Ta. Authentic Saigon Family Dining Experience. All rights reserved.</p>
+        <p class="flex items-center gap-1">
+          Made with love & jasmine rice in Saigon, Vietnam
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal Wrapper -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 shadow-2xl relative">
+      
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-bamboo-100 text-bamboo-800 hover:bg-bamboo-200 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-[11px] font-bold uppercase text-terracotta-600 tracking-wider">Quick Reservation</span>
+        <h3 class="font-editorial text-2xl font-bold text-bamboo-900">Secure Your Place</h3>
+        <p class="text-xs text-bamboo-800">Only 8 seats available per session.</p>
+      </div>
+
+      <form id="modalBookingForm" onsubmit="handleModalFormSubmission(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-bamboo-800 mb-1">Session</label>
+          <select id="modalSessionSelect" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs font-medium text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+            <option value="morning">Morning Wet Market + Lunch (08:30 - 13:00)</option>
+            <option value="twilight">Twilight Market + Dinner (15:30 - 20:00)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-bamboo-800 mb-1">Date</label>
+            <input type="date" required id="modalDateInput" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-bamboo-800 mb-1">Number of Guests</label>
+            <select id="modalGuestSelect" onchange="updateModalCalculations()" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs font-medium text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+              <option value="7">7 Guests</option>
+              <option value="8">8 Guests (Full Table)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-bamboo-800 mb-1">Lead Guest Name</label>
+          <input type="text" required placeholder="Your full name" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-bamboo-800 mb-1">Email Address</label>
+          <input type="email" required placeholder="your.email@example.com" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-bamboo-800 mb-1">WhatsApp / Mobile</label>
+          <input type="tel" required placeholder="+1 234 567 8900" class="w-full bg-bamboo-50 border border-bamboo-300 rounded-xl px-3 py-2 text-xs text-bamboo-900 focus:outline-none focus:border-terracotta-500">
+        </div>
+
+        <div class="p-3 bg-bamboo-50 rounded-xl border border-bamboo-200">
+          <label class="block text-xs font-bold text-bamboo-800 mb-1">Dietary Restrictions</label>
+          <input type="text" placeholder="e.g., None, Vegetarian, No Peanuts" class="w-full bg-white border border-bamboo-200 rounded-lg px-2.5 py-1.5 text-xs text-bamboo-900 focus:outline-none">
+        </div>
+
+        <!-- Total Calculation -->
+        <div class="p-3 bg-terracotta-50 rounded-xl border border-terracotta-200 flex items-center justify-between">
+          <span class="text-xs font-semibold text-terracotta-800">Total Price:</span>
+          <span class="text-base font-bold text-terracotta-700" id="modalCalculatedTotal">$96 USD</span>
+        </div>
+
+        <button type="submit" class="w-full bg-terracotta-600 hover:bg-terracotta-700 text-white py-3 rounded-xl font-bold text-xs shadow-md transition-all">
+          Confirm Instant Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reservation Success Confirmation Modal -->
+  <div id="successModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-jungle-50 text-jungle-600 flex items-center justify-center mx-auto">
+        <i data-lucide="check-check" class="w-8 h-8"></i>
+      </div>
+      <h3 class="font-editorial text-2xl font-bold text-bamboo-900">Your Table is Saved!</h3>
+      <p class="text-xs text-bamboo-800 leading-relaxed">
+        Cảm ơn bạn! We have received your reservation for <span id="confirmedGuestDisplay" class="font-bold">2 guests</span>.
+        A detailed confirmation with the District 3 Google Map pin and family guide has been dispatched.
+      </p>
+
+      <div class="p-4 bg-bamboo-50 rounded-2xl border border-bamboo-200 text-left space-y-2">
+        <div class="flex justify-between text-xs">
+          <span class="text-bamboo-800">Booking Reference:</span>
+          <span class="font-mono font-bold text-terracotta-600" id="confirmedRefCode">CNNT-8492</span>
+        </div>
+        <div class="flex justify-between text-xs">
+          <span class="text-bamboo-800">Date:</span>
+          <span class="font-semibold text-bamboo-900" id="confirmedDateDisplay">Tomorrow</span>
+        </div>
+        <div class="flex justify-between text-xs">
+          <span class="text-bamboo-800">Session:</span>
+          <span class="font-semibold text-bamboo-900" id="confirmedSessionDisplay">Morning Market + Lunch</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 pt-2">
+        <button onclick="downloadCalendarInvite()" class="w-full bg-jungle-600 hover:bg-jungle-700 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+          <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+          <span>Save to Calendar (.ics)</span>
+        </button>
+        <button onclick="closeSuccessModal()" class="w-full bg-bamboo-100 hover:bg-bamboo-200 text-bamboo-900 py-2.5 rounded-xl text-xs font-bold transition-all">
+          Done & Return to Site
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Floating Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-bamboo-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+    <span id="toastMessage">Information copied to clipboard</span>
+  </div>
+
+  <script>
+    // State variables
+    let currentCurrency = 'USD';
+    let currentSession = 'morning';
+    let heroGuestCount = 2;
+    let inlineGuestCount = 2;
+    let selectedMenuTab = 'classic';
+
+    // Pricing definitions per person
+    const PRICING = {
+      USD: 48,
+      VND: 1200000,
+      EUR: 45
+    };
+
+    // Formatter utility
+    function formatCurrency(amount, currency) {
+      if (currency === 'VND') {
+        return new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
+      } else if (currency === 'EUR') {
+        return '€' + amount.toFixed(0);
+      } else {
+        return '$' + amount.toFixed(0) + ' USD';
+      }
+    }
+
+    // Set Default Date to Tomorrow for datepickers
+    window.addEventListener('DOMContentLoaded', () => {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const isoDate = tomorrow.toISOString().split('T')[0];
+
+      const heroDate = document.getElementById('heroDateInput');
+      const bookingDate = document.getElementById('bookingDateInput');
+      const modalDate = document.getElementById('modalDateInput');
+
+      if (heroDate) heroDate.value = isoDate;
+      if (bookingDate) bookingDate.value = isoDate;
+      if (modalDate) modalDate.value = isoDate;
+
+      // Initialize menu tabs & icons
+      renderMenuCards('classic');
+      updatePriceDisplays();
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+
+    function updateCurrency(newCurrency) {
+      currentCurrency = newCurrency;
+      // Sync dropdowns
+      const selector = document.getElementById('currencySelector');
+      const mobileSelector = document.getElementById('mobileCurrencySelector');
+      if (selector) selector.value = newCurrency;
+      if (mobileSelector) mobileSelector.value = newCurrency;
+
+      updatePriceDisplays();
+      showToast(`Currency updated to ${newCurrency}`);
+    }
+
+    function updatePriceDisplays() {
+      const rate = PRICING[currentCurrency];
+      
+      // Update nav button price
+      const navPrice = document.querySelector('.display-price-nav');
+      if (navPrice) {
+        navPrice.textContent = formatCurrency(rate, currentCurrency);
+      }
+
+      // Update hero calculations
+      const heroCalculated = document.getElementById('heroCalculatedTotal');
+      if (heroCalculated) {
+        heroCalculated.textContent = formatCurrency(rate * heroGuestCount, currentCurrency);
+      }
+
+      // Update inline booking summary
+      const pricePerPersonLabel = document.getElementById('pricePerPersonLabel');
+      const summaryGrandTotal = document.getElementById('summaryGrandTotal');
+      if (pricePerPersonLabel) {
+        pricePerPersonLabel.textContent = formatCurrency(rate, currentCurrency);
+      }
+      if (summaryGrandTotal) {
+        summaryGrandTotal.textContent = formatCurrency(rate * inlineGuestCount, currentCurrency);
+      }
+
+      // Update modal calculations
+      updateModalCalculations();
+    }
+
+    function setHeroSession(session) {
+      currentSession = session;
+      const morningBtn = document.getElementById('heroSessionMorning');
+      const twilightBtn = document.getElementById('heroSessionTwilight');
+
+      if (session === 'morning') {
+        morningBtn.classList.add('border-terracotta-500', 'bg-terracotta-50');
+        morningBtn.classList.remove('border-bamboo-200', 'bg-white');
+        twilightBtn.classList.remove('border-terracotta-500', 'bg-terracotta-50');
+        twilightBtn.classList.add('border-bamboo-200', 'bg-white');
+      } else {
+        twilightBtn.classList.add('border-terracotta-500', 'bg-terracotta-50');
+        twilightBtn.classList.remove('border-bamboo-200', 'bg-white');
+        morningBtn.classList.remove('border-terracotta-500', 'bg-terracotta-50');
+        morningBtn.classList.add('border-bamboo-200', 'bg-white');
+      }
+    }
+
+    function adjustHeroGuests(delta) {
+      const newCount = heroGuestCount + delta;
+      if (newCount >= 1 && newCount <= 8) {
+        heroGuestCount = newCount;
+        document.getElementById('heroGuestCount').textContent = `${heroGuestCount} ${heroGuestCount === 1 ? 'Guest' : 'Guests'}`;
+        updatePriceDisplays();
+      }
+    }
+
+    function proceedToBookingFromHero() {
+      // Transfer values to inline booking
+      inlineGuestCount = heroGuestCount;
+      const heroDate = document.getElementById('heroDateInput').value;
+      if (heroDate) {
+        document.getElementById('bookingDateInput').value = heroDate;
+      }
+      handleSessionChange(currentSession);
+      updateInlineGuestDisplay();
+
+      // Scroll smoothly to reservation section
+      const section = document.getElementById('booking-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function handleSessionChange(session) {
+      currentSession = session;
+      const morningLabel = document.getElementById('labelMorning');
+      const twilightLabel = document.getElementById('labelTwilight');
+
+      if (session === 'morning') {
+        morningLabel.classList.add('border-terracotta-500', 'bg-terracotta-50/50');
+        morningLabel.classList.remove('border-bamboo-200', 'bg-white');
+        twilightLabel.classList.remove('border-terracotta-500', 'bg-terracotta-50/50');
+        twilightLabel.classList.add('border-bamboo-200', 'bg-white');
+      } else {
+        twilightLabel.classList.add('border-terracotta-500', 'bg-terracotta-50/50');
+        twilightLabel.classList.remove('border-bamboo-200', 'bg-white');
+        morningLabel.classList.remove('border-terracotta-500', 'bg-terracotta-50/50');
+        morningLabel.classList.add('border-bamboo-200', 'bg-white');
+      }
+    }
+
+    function changeGuestCount(delta) {
+      const newCount = inlineGuestCount + delta;
+      if (newCount >= 1 && newCount <= 8) {
+        inlineGuestCount = newCount;
+        updateInlineGuestDisplay();
+        updatePriceDisplays();
+      }
+    }
+
+    function updateInlineGuestDisplay() {
+      document.getElementById('bookingGuestNumber').textContent = `${inlineGuestCount} ${inlineGuestCount === 1 ? 'Guest' : 'Guests'}`;
+      document.getElementById('summaryGuestCount').textContent = inlineGuestCount;
+      
+      const seatsLeft = 8 - inlineGuestCount;
+      const seatText = document.getElementById('seatAvailabilityText');
+      if (seatsLeft === 0) {
+        seatText.textContent = "Full private table!";
+        seatText.className = "block text-[10px] text-terracotta-600 font-semibold";
+      } else {
+        seatText.textContent = `${seatsLeft} seats remaining`;
+        seatText.className = "block text-[10px] text-jungle-600 font-semibold";
+      }
+    }
+
+    const MENU_DATA = {
+      classic: [
+        {
+          pillar: "Món Mặn (Savory Protein)",
+          name: "Cá Bông Lau Kho Tộ",
+          desc: "Caramelized freshwater fish braised slowly in black claypots with shallots, bird's eye chili, and fresh Phú Quốc peppercorns.",
+          icon: "flame"
+        },
+        {
+          pillar: "Món Xào (Crisp Greens)",
+          name: "Rau Muống Xào Tỏi Giòn",
+          desc: "Tender morning glory greens wok-tossed over blazing heat with crushed garlic cloves and light golden sesame oil.",
+          icon: "leaf"
+        },
+        {
+          pillar: "Món Canh (Cleansing Soup)",
+          name: "Canh Chua Cá Hồi & Bạc Hà",
+          desc: "Sweet and sour southern tamarind broth with pineapple, elephant ear stalks, bean sprouts, and fresh culantro.",
+          icon: "soup"
+        },
+        {
+          pillar: "Cơm Trắng (Pure Rice)",
+          name: "Cơm Niêu Gạo Nàng Thơm",
+          desc: "Fragrant Jasmine grain slowly steamed in porous earthenware to form a subtle, aromatic golden bottom crust.",
+          icon: "bowl"
+        }
+      ],
+      pescatarian: [
+        {
+          pillar: "Món Mặn (Savory Seafood)",
+          name: "Tôm Sú Rim Nước Dừa Xiêm",
+          desc: "Wild tiger prawns simmered gently in fresh young coconut water until reduced to a savory-sweet glaze.",
+          icon: "fish"
+        },
+        {
+          pillar: "Món Xào (Crisp Greens)",
+          name: "Bông Bí Xào Nấm Rơm",
+          desc: "Delicate pumpkin blossoms wok-tossed with fresh straw mushrooms and sweet shallots from Lý Sơn island.",
+          icon: "leaf"
+        },
+        {
+          pillar: "Món Canh (Seafood Broth)",
+          name: "Canh Cải Xanh Nấu Tôm Tươi",
+          desc: "Pungent mustard greens simmered in sweet minced shrimp broth and a touch of warm crushed ginger.",
+          icon: "soup"
+        },
+        {
+          pillar: "Cơm Trắng (Pure Rice)",
+          name: "Cơm Niêu Lá Dứa",
+          desc: "Steamed jasmine rice infused with natural fragrant pandan leaves picked right from our courtyard garden.",
+          icon: "bowl"
+        }
+      ],
+      vegan: [
+        {
+          pillar: "Món Mặn (Savory Plant-Based)",
+          name: "Nấm Đông Cô Kho Tiêu Xanh",
+          desc: "Plump fresh shiitake and oyster mushrooms caramelized in artisanal soy sauce, coconut nectar, and green peppercorns.",
+          icon: "sprout"
+        },
+        {
+          pillar: "Món Xào (Wok Greens)",
+          name: "Đậu Bắp & Cà Tím Nướng Mỡ Hành Chay",
+          desc: "Charred baby okra and Japanese eggplant drizzled with toasted scallion oil, roasted crushed peanuts, and lime chili dip.",
+          icon: "leaf"
+        },
+        {
+          pillar: "Món Canh (Herbal Soup)",
+          name: "Canh Chua Chay Nấm & Đậu Hũ",
+          desc: "Tangy tamarind soup brimming with fresh silken tofu, tomatoes, sweet pineapple, okra, and rice paddy herbs.",
+          icon: "soup"
+        },
+        {
+          pillar: "Cơm Trắng (Pure Rice)",
+          name: "Cơm Gạo Lứt Huyết Rồng Hấp Sen",
+          desc: "Nutritious highland red rice steamed wrapped in fresh lotus leaves with sweet fresh lotus seeds.",
+          icon: "bowl"
+        }
+      ]
+    };
+
+    function switchMenuTab(tabKey) {
+      selectedMenuTab = tabKey;
+      
+      const btnClassic = document.getElementById('tabBtnClassic');
+      const btnPescatarian = document.getElementById('tabBtnPescatarian');
+      const btnVegan = document.getElementById('tabBtnVegan');
+
+      [btnClassic, btnPescatarian, btnVegan].forEach(btn => {
+        btn.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-bamboo-800 hover:bg-bamboo-200/50 shadow-sm";
+      });
+
+      if (tabKey === 'classic') {
+        btnClassic.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-terracotta-600 text-white";
+      } else if (tabKey === 'pescatarian') {
+        btnPescatarian.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-jungle-600 text-white";
+      } else {
+        btnVegan.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm bg-emerald-700 text-white";
+      }
+
+      renderMenuCards(tabKey);
+    }
+
+    function renderMenuCards(tabKey) {
+      const container = document.getElementById('menuCardsContainer');
+      const items = MENU_DATA[tabKey];
+      if (!container || !items) return;
+
+      container.innerHTML = items.map(item => `
+        <div class="bg-white rounded-3xl p-6 border border-bamboo-200 flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-bamboo-100 text-terracotta-600 flex items-center justify-center mb-4">
+              <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+            </div>
+            <span class="text-[11px] font-bold uppercase text-terracotta-600 tracking-wider block mb-1">${item.pillar}</span>
+            <h4 class="font-editorial text-lg font-bold text-bamboo-900 mb-2">${item.name}</h4>
+            <p class="text-xs text-bamboo-800 leading-relaxed">${item.desc}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bamboo-100 flex items-center text-[10px] text-jungle-700 font-semibold">
+            <i data-lucide="check" class="w-3 h-3 mr-1"></i> Fresh Daily Sourcing
+          </div>
+        </div>
+      `).join('');
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    function openBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.remove('hidden');
+      updateModalCalculations();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.add('hidden');
+    }
+
+    function updateModalCalculations() {
+      const guests = parseInt(document.getElementById('modalGuestSelect').value, 10);
+      const rate = PRICING[currentCurrency];
+      const total = guests * rate;
+      document.getElementById('modalCalculatedTotal').textContent = formatCurrency(total, currentCurrency);
+    }
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('hidden');
+    }
+
+    function toggleFaq(id) {
+      const answer = document.getElementById(`faqAnswer-${id}`);
+      const icon = document.getElementById(`faqIcon-${id}`);
+      const isHidden = answer.classList.contains('hidden');
+
+      // Close all answers first
+      for (let i = 1; i <= 5; i++) {
+        const a = document.getElementById(`faqAnswer-${i}`);
+        const ic = document.getElementById(`faqIcon-${i}`);
+        if (a) a.classList.add('hidden');
+        if (ic) ic.classList.remove('rotate-180');
+      }
+
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    function handleFormSubmission(event) {
+      event.preventDefault();
+      const date = document.getElementById('bookingDateInput').value;
+      const ref = 'CNNT-' + Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('confirmedRefCode').textContent = ref;
+      document.getElementById('confirmedGuestDisplay').textContent = `${inlineGuestCount} guests`;
+      document.getElementById('confirmedDateDisplay').textContent = date || 'Confirmed Date';
+      document.getElementById('confirmedSessionDisplay').textContent = currentSession === 'morning' ? 'Morning Market + Lunch (08:30)' : 'Twilight Market + Dinner (15:30)';
+
+      const success = document.getElementById('successModal');
+      success.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleModalFormSubmission(event) {
+      event.preventDefault();
+      closeBookingModal();
+      const guests = document.getElementById('modalGuestSelect').value;
+      const date = document.getElementById('modalDateInput').value;
+      const session = document.getElementById('modalSessionSelect').value;
+      const ref = 'CNNT-' + Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('confirmedRefCode').textContent = ref;
+      document.getElementById('confirmedGuestDisplay').textContent = `${guests} guests`;
+      document.getElementById('confirmedDateDisplay').textContent = date || 'Confirmed Date';
+      document.getElementById('confirmedSessionDisplay').textContent = session === 'morning' ? 'Morning Market + Lunch (08:30)' : 'Twilight Market + Dinner (15:30)';
+
+      const success = document.getElementById('successModal');
+      success.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+    }
+
+    function downloadCalendarInvite() {
+      const ref = document.getElementById('confirmedRefCode').textContent;
+      const icsData = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Com Nha Nguoi Ta//Saigon Experience//EN",
+        "BEGIN:VEVENT",
+        "SUMMARY:Cơm Nhà Người Ta — Saigon Family Meal Experience",
+        "DESCRIPTION:Cultural family dining experience in District 3. Booking Ref: " + ref + ". Meeting at Chợ Vườn Chuối entrance.",
+        "LOCATION:Chợ Vườn Chuối, Ward 4, District 3, Ho Chi Minh City, Vietnam",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute("download", `com-nha-nguoi-ta-${ref}.ics`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast("Calendar invite (.ics) downloaded!");
+    }
+
+    function copyContact(type) {
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = "+84908123456";
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      showToast("WhatsApp contact copied: +84 908 123 456");
+    }
+
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      event.target.reset();
+      showToast("Welcome to the Saigon Hearth Letter!");
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastText = document.getElementById('toastMessage');
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
